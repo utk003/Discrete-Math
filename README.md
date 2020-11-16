@@ -1,4 +1,4 @@
-# Discrete-Math
+# Honors Discrete Math
 ## About
 This is my repository for things related to the discrete math class I took in 12th grade. I will upload all of the work I do in mathematica relating to the various discussions we have.
 
