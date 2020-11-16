@@ -1,0 +1,829 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33795,        821]
+NotebookOptionsPosition[     31873,        779]
+NotebookOutlinePosition[     32265,        795]
+CellTagsIndexPosition[     32222,        792]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Scheduling", "Title",
+ CellChangeTimes->{{3.814194593258328*^9, 
+  3.814194594550411*^9}},ExpressionUUID->"d861d0ba-2ddb-4103-913d-\
+46dbc87c26f5"],
+
+Cell[CellGroupData[{
+
+Cell["Data Input", "Section",
+ CellChangeTimes->{{3.81419460053039*^9, 
+  3.814194604845327*^9}},ExpressionUUID->"a90e9b44-7071-438c-9bcb-\
+d8b91d54a929"],
+
+Cell[CellGroupData[{
+
+Cell["Data Entry", "Subsection",
+ CellChangeTimes->{{3.814194620613212*^9, 
+  3.8141946274138727`*^9}},ExpressionUUID->"0c0b740d-80f4-4745-9681-\
+468271a18257"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"input", "=", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<AP\>\"", ",", "7"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<AF\>\"", ",", "5"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<AW\>\"", ",", "6"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<AD\>\"", ",", "8"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IF\>\"", ",", "5"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IW\>\"", ",", "7"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<ID\>\"", ",", "5"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<PL\>\"", ",", "4"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IP\>\"", ",", "4"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<PU\>\"", ",", "3"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<HU\>\"", ",", "4"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IC\>\"", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<FW\>\"", ",", "6"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<PD\>\"", ",", "3"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<EU\>\"", ",", "2"}], "}"}]}], "\[IndentingNewLine]", 
+     "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"dependencies", "=", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<AP\>\"", ",", "\"\<AF\>\""}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IF\>\"", ",", "\"\<AW\>\""}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<AD\>\"", ",", "\"\<IW\>\""}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", "\"\<IF\>\"", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", "\"\<IW\>\"", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<IP\>\"", ",", "\"\<ID\>\""}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", "\"\<IP\>\"", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<PL\>\"", ",", "\"\<HU\>\""}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", "\"\<IC\>\"", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", "\"\<HU\>\"", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<PU\>\"", ",", "\"\<HU\>\""}], "}"}]}], 
+     "\[IndentingNewLine]", "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"numTeams", "=", "2"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.814190072165484*^9, 3.8141901200719748`*^9}, {
+   3.814190166948648*^9, 3.81419019015825*^9}, {3.8141908229446993`*^9, 
+   3.81419083570859*^9}, {3.814190876889452*^9, 3.814190878628883*^9}, {
+   3.814190997497797*^9, 3.8141910946915627`*^9}, {3.814191160266697*^9, 
+   3.814191180897238*^9}, {3.8141912721566677`*^9, 3.814191304073838*^9}, 
+   3.81419411502503*^9, {3.814194212233408*^9, 3.814194219316841*^9}, {
+   3.814194347914768*^9, 3.81419455225389*^9}, {3.814194631064588*^9, 
+   3.814194662397996*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"50101e97-3fdc-48f8-b96f-d590cfc974c6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Misc. Helper Methods (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.81419456236207*^9, 3.8141945859507*^9}, {
+  3.814532259865559*^9, 
+  3.814532265329455*^9}},ExpressionUUID->"72cd933e-8b9c-41d6-b364-\
+61070ee21384"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"loopedDependenciesChecker", "[", "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fails$loopedDependenciesChecker", "=", "False"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i$loopedDependenciesChecker", "=", "1"}], ",", 
+      RowBox[{"i$loopedDependenciesChecker", "\[LessEqual]", "numTasks"}], 
+      ",", 
+      RowBox[{"i$loopedDependenciesChecker", "++"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{
+        "j$loopedDependenciesChecker", "=", "i$loopedDependenciesChecker"}], 
+        ",", 
+        RowBox[{"j$loopedDependenciesChecker", "\[LessEqual]", "numTasks"}], 
+        ",", 
+        RowBox[{"j$loopedDependenciesChecker", "++"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"ContainsAll", "[", 
+            RowBox[{
+             RowBox[{"dependencies", "[", 
+              RowBox[{"[", "j$loopedDependenciesChecker", "]"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"tasks", "[", 
+               RowBox[{"[", "i$loopedDependenciesChecker", "]"}], "]"}], 
+              "}"}]}], "]"}], "&&", "\[IndentingNewLine]", 
+           RowBox[{"ContainsAll", "[", 
+            RowBox[{
+             RowBox[{"dependencies", "[", 
+              RowBox[{"[", "i$loopedDependenciesChecker", "]"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"tasks", "[", 
+               RowBox[{"[", "j$loopedDependenciesChecker", "]"}], "]"}], 
+              "}"}]}], "]"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"fails$loopedDependenciesChecker", "=", "True"}]}], 
+         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+     "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+    "fails$loopedDependenciesChecker"}], "\[IndentingNewLine]", 
+   ")"}]}]], "Input",
+ CellChangeTimes->{{3.814190018714201*^9, 3.8141900550808353`*^9}, {
+  3.814190657270237*^9, 3.81419080763929*^9}, {3.814191089556356*^9, 
+  3.814191089693741*^9}, {3.814191144716358*^9, 3.8141911486685762`*^9}, {
+  3.81419120231369*^9, 3.81419121180881*^9}, {3.814191270071167*^9, 
+  3.814191270390781*^9}, {3.814194079911786*^9, 3.814194102425737*^9}, {
+  3.814194138672308*^9, 3.814194214782749*^9}, {3.8145327639864473`*^9, 
+  3.814532825556964*^9}},
+ CellLabel->"In[45]:=",ExpressionUUID->"b47ed5fa-8a25-4405-a475-958713b0f85e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"index", "[", 
+   RowBox[{"task_", ",", "tasks_"}], "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ind$index", "=", 
+     RowBox[{"-", "1"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"taskLen$index", "=", 
+     RowBox[{
+      RowBox[{"Dimensions", "[", "tasks", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i$index", "=", "1"}], ",", 
+      RowBox[{"i$index", "\[LessEqual]", "taskLen$index"}], ",", 
+      RowBox[{"i$index", "++"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"tasks", "[", 
+          RowBox[{"[", "i$index", "]"}], "]"}], "\[Equal]", "task"}], ",", 
+        RowBox[{"ind$index", "=", "i$index"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", "ind$index"}], 
+   "\[IndentingNewLine]", ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"index", "[", "task_", "]"}], ":=", 
+  RowBox[{"index", "[", 
+   RowBox[{"task", ",", "tasks"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.8141914095040083`*^9, 3.8141914518901463`*^9}, {
+  3.814193996195743*^9, 3.814194001922681*^9}, {3.8141941052504787`*^9, 
+  3.8141941092248163`*^9}, {3.814532138234374*^9, 3.814532168269218*^9}, {
+  3.814532737132333*^9, 3.8145327597865334`*^9}, {3.814534295277197*^9, 
+  3.814534324379401*^9}, {3.814535981602919*^9, 3.814536000923503*^9}},
+ CellLabel->
+  "In[332]:=",ExpressionUUID->"f12cdc99-01f1-42a1-aaf4-d2668f62cced"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Data Processing (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.814194672175425*^9, 3.814194684994659*^9}, {
+  3.81453226884153*^9, 
+  3.8145322691047*^9}},ExpressionUUID->"7d4c17cf-3274-4514-9f03-975179d78415"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"numTasks", "=", 
+    RowBox[{
+     RowBox[{"Dimensions", "[", "input", "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tasks", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"input", "[", 
+      RowBox[{"[", 
+       RowBox[{"k", ",", "1"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "numTasks"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"times", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"input", "[", 
+       RowBox[{"[", 
+        RowBox[{"k", ",", "2"}], "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "numTasks"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"loopedDependenciesChecker", "[", "]"}], ",", 
+   RowBox[{
+    RowBox[{"dependencies", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", "numTasks"}], "}"}]}], "]"}]}], ";", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<Dependencies NOT loaded (Given dependencies had cycles)\>\"", 
+     "]"}]}], ",", 
+   RowBox[{"Print", "[", "\"\<Dependencies successfully loaded\>\"", "]"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.814194640928214*^9, 3.8141946497946377`*^9}, {
+   3.814531680830488*^9, 3.814531682521206*^9}, {3.814531982572444*^9, 
+   3.814531984345072*^9}, 3.814535566214793*^9},
+ CellLabel->
+  "In[267]:=",ExpressionUUID->"f1509851-779f-4156-b5d5-d7c8afbb05b6"],
+
+Cell[BoxData["\<\"Dependencies successfully loaded\"\>"], "Print",
+ CellChangeTimes->{{3.814531982964651*^9, 3.814531984671085*^9}, 
+   3.814534955350462*^9, 3.814535601531496*^9},
+ CellLabel->
+  "During evaluation of \
+In[267]:=",ExpressionUUID->"f5ca8c7a-0ba9-4e5c-a656-85323df420f2"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dependencyMatrix", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{"False", ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "numTasks"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "numTasks"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", "numTasks"}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dependenciesLength", "=", 
+     RowBox[{
+      RowBox[{"Dimensions", "[", 
+       RowBox[{"dependencies", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"j", "=", "1"}], ",", 
+      RowBox[{"j", "\[LessEqual]", "dependenciesLength"}], ",", 
+      RowBox[{"j", "++"}], ",", 
+      RowBox[{
+       RowBox[{"dependencyMatrix", "[", 
+        RowBox[{"[", 
+         RowBox[{"i", ",", 
+          RowBox[{"index", "[", 
+           RowBox[{"dependencies", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "j"}], "]"}], "]"}], "]"}]}], "]"}], "]"}], 
+       "=", "True"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], "Input",
+ CellChangeTimes->{{3.81453171246436*^9, 3.814531948382724*^9}, {
+  3.814532050637945*^9, 3.814532120190832*^9}, {3.8145321968609257`*^9, 
+  3.8145321970345173`*^9}, {3.814532229645936*^9, 3.814532229969514*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"aaa26d93-b0e2-417f-973b-dd91d5d6594a"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Decreasing-Time Algorithm", "Section",
+ CellChangeTimes->{{3.814531623987523*^9, 3.814531625567486*^9}, 
+   3.814535572531007*^9},ExpressionUUID->"f2378f0d-8552-47dc-ade0-\
+10a07b320840"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"addValidTasksFromList", "[", 
+    RowBox[{"fromList_", ",", "dependencyMat_", ",", "toList_"}], "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"fromList$addValidTasksFromList", "=", "fromList"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"toList$addValidTasksFromList", "=", "toList"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"numAvailableTasks$addValidTasksFromList", "=", 
+      RowBox[{
+       RowBox[{"Dimensions", "[", "fromList", "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{
+       "i$addValidTasksFromList", "=", 
+        "numAvailableTasks$addValidTasksFromList"}], ",", 
+       RowBox[{"i$addValidTasksFromList", "\[GreaterEqual]", "1"}], ",", 
+       RowBox[{"i$addValidTasksFromList", "--"}], ",", "\[IndentingNewLine]", 
+       
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"ContainsOnly", "[", 
+           RowBox[{
+            RowBox[{"dependencyMat", "[", 
+             RowBox[{"[", 
+              RowBox[{"index", "[", 
+               RowBox[{"fromList$addValidTasksFromList", "[", 
+                RowBox[{"[", "i$addValidTasksFromList", "]"}], "]"}], "]"}], 
+              "]"}], "]"}], ",", 
+            RowBox[{"{", "False", "}"}]}], "]"}], ",", "\[IndentingNewLine]", 
+          
+          RowBox[{
+           RowBox[{"toList$addValidTasksFromList", "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{"toList$addValidTasksFromList", ",", 
+              RowBox[{"fromList$addValidTasksFromList", "[", 
+               RowBox[{"[", "i$addValidTasksFromList", "]"}], "]"}]}], 
+             "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"fromList$addValidTasksFromList", "=", 
+            RowBox[{"Delete", "[", 
+             RowBox[{
+             "fromList$addValidTasksFromList", ",", 
+              "i$addValidTasksFromList"}], "]"}]}], ";"}]}], 
+         "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "fromList$addValidTasksFromList", ",", "toList$addValidTasksFromList"}],
+       "}"}]}], "\[IndentingNewLine]", ")"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"inputSortedDecreasing", "=", 
+   RowBox[{"Sort", "[", 
+    RowBox[{"input", ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"#1", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], ">", 
+       RowBox[{"#2", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "&"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"inputSortedDecreasing", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"inputSortedDecreasing", "[", 
+      RowBox[{"[", 
+       RowBox[{"i", ",", "1"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "numTasks"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"giveKSlowestTasks", "[", 
+   RowBox[{"validTasks_", ",", "k_"}], "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Dimensions", "[", "validTasks", "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "\[LessEqual]", "k"}], ",", 
+     "\[IndentingNewLine]", "validTasks", ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"kSlowest$giveKSlowestTasks", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"count$giveKSlowestTasks", "=", "0"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"i$giveKSlowestTasks", "=", "1"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"i$giveKSlowestTasks", "\[LessEqual]", "numTasks"}], "&&", 
+         RowBox[{"count$giveKSlowestTasks", "<", "k"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"ContainsAny", "[", 
+            RowBox[{"validTasks", ",", 
+             RowBox[{"{", 
+              RowBox[{"inputSortedDecreasing", "[", 
+               RowBox[{"[", "i$giveKSlowestTasks", "]"}], "]"}], "}"}]}], 
+            "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"kSlowest$giveKSlowestTasks", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"kSlowest$giveKSlowestTasks", ",", 
+               RowBox[{"inputSortedDecreasing", "[", 
+                RowBox[{"[", "i$giveKSlowestTasks", "]"}], "]"}]}], "]"}]}], 
+            ";", "\[IndentingNewLine]", 
+            RowBox[{"count$giveKSlowestTasks", "++"}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"i$giveKSlowestTasks", "++"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      "kSlowest$giveKSlowestTasks"}]}], "\[IndentingNewLine]", "]"}], 
+   "\[IndentingNewLine]", ")"}]}]}], "Input",
+ CellChangeTimes->{{3.814533952286347*^9, 3.8145340140568113`*^9}, {
+  3.814534079012529*^9, 3.814534126343279*^9}, {3.8145341647580147`*^9, 
+  3.8145342662109528`*^9}, {3.814534535692922*^9, 3.814534614908908*^9}, {
+  3.814534645522255*^9, 3.814534808680305*^9}, {3.814534850188974*^9, 
+  3.814534856234823*^9}, {3.814535234636442*^9, 3.814535274157584*^9}},
+ CellLabel->
+  "In[494]:=",ExpressionUUID->"fc735de6-a5c1-44b5-bc34-639dd9cd80e9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"decreasingTimeAlgorithm", "[", "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"remainingTasks", "=", "tasks"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"currentlyValidTasks", "=", 
+     RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"depMatCopy", "=", "dependencyMatrix"}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"workerAssignments", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "numTeams"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"workerEndTimes", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "numTeams"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"time", "=", "0"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"While", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"ContainsOnly", "[", 
+         RowBox[{"remainingTasks", ",", 
+          RowBox[{"{", "}"}]}], "]"}]}], "||", 
+       RowBox[{"!", 
+        RowBox[{"ContainsOnly", "[", 
+         RowBox[{"currentlyValidTasks", ",", 
+          RowBox[{"{", "}"}]}], "]"}]}]}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "\[LessEqual]", "numTeams"}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"workerEndTimes", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", "time"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"prevTaskIndex", "=", 
+             RowBox[{"index", "[", 
+              RowBox[{"Last", "[", 
+               RowBox[{
+                RowBox[{"workerAssignments", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", "0"}], "]"}], "]"}]}], 
+            ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"prevTaskIndex", "\[NotEqual]", 
+               RowBox[{"-", "1"}]}], ",", 
+              RowBox[{"For", "[", 
+               RowBox[{
+                RowBox[{"j", "=", "1"}], ",", 
+                RowBox[{"j", "\[LessEqual]", "numTasks"}], ",", 
+                RowBox[{"j", "++"}], ",", 
+                RowBox[{
+                 RowBox[{"depMatCopy", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"j", ",", "prevTaskIndex"}], "]"}], "]"}], "=", 
+                 "False"}]}], "]"}]}], "]"}]}]}], "\[IndentingNewLine]", 
+          "]"}]}], "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"validTasksReturnValue", "=", 
+        RowBox[{"addValidTasksFromList", "[", 
+         RowBox[{
+         "remainingTasks", ",", "depMatCopy", ",", "currentlyValidTasks"}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"remainingTasks", "=", 
+        RowBox[{"validTasksReturnValue", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"currentlyValidTasks", "=", 
+        RowBox[{"validTasksReturnValue", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"workerCountAvailable", "=", "0"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "\[LessEqual]", "numTeams"}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"workerEndTimes", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "\[LessEqual]", "time"}], ",", 
+           RowBox[{"workerCountAvailable", "++"}]}], "]"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"slowestTasks", "=", 
+        RowBox[{"giveKSlowestTasks", "[", 
+         RowBox[{"currentlyValidTasks", ",", "workerCountAvailable"}], 
+         "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"numTasksToGive", "=", 
+        RowBox[{
+         RowBox[{"Dimensions", "[", "slowestTasks", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{
+          RowBox[{"i", "\[LessEqual]", "numTeams"}], "&&", 
+          RowBox[{"numTasksToGive", ">", "0"}]}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"workerEndTimes", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "\[LessEqual]", "time"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"workerAssignments", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{
+               RowBox[{"workerAssignments", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", 
+               RowBox[{"slowestTasks", "[", 
+                RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"workerEndTimes", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], "=", 
+             RowBox[{"time", "+", 
+              RowBox[{"times", "[", 
+               RowBox[{"[", 
+                RowBox[{"index", "[", 
+                 RowBox[{"slowestTasks", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], "]"}], "]"}], "]"}]}]}], 
+            ";", "\[IndentingNewLine]", 
+            RowBox[{"numTasksToGive", "--"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"currentlyValidTasks", "=", 
+             RowBox[{"Delete", "[", 
+              RowBox[{"currentlyValidTasks", ",", 
+               RowBox[{"index", "[", 
+                RowBox[{
+                 RowBox[{"slowestTasks", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], ",", 
+                 "currentlyValidTasks"}], "]"}]}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"slowestTasks", "=", 
+             RowBox[{"Delete", "[", 
+              RowBox[{"slowestTasks", ",", "1"}], "]"}]}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{",", 
+         RowBox[{"i", "\[LessEqual]", "numTeams"}], ",", 
+         RowBox[{"i", "++"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"workerEndTimes", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "\[LessEqual]", "time"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"assignmentLen", "=", 
+             RowBox[{
+              RowBox[{"Dimensions", "[", 
+               RowBox[{"workerAssignments", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"assignmentLen", "\[Equal]", "0"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"workerAssignments", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+                RowBox[{"{", "0", "}"}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"assignmentLen", "=", "1"}], ";"}]}], 
+             "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"index", "[", 
+                RowBox[{"workerAssignments", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "assignmentLen"}], "]"}], "]"}], "]"}], 
+               "\[NotEqual]", 
+               RowBox[{"-", "1"}]}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"workerAssignments", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "=", 
+               RowBox[{"Append", "[", 
+                RowBox[{
+                 RowBox[{"workerAssignments", "[", 
+                  RowBox[{"[", "i", "]"}], "]"}], ",", "1"}], "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"workerAssignments", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "assignmentLen"}], "]"}], "]"}], "++"}], 
+               ";"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+          "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"time", "++"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"finalEndTime", "=", 
+     RowBox[{"Max", "[", "workerEndTimes", "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", "numTeams"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"workerEndTimes", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "<", "finalEndTime"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"assignmentLen", "=", 
+          RowBox[{
+           RowBox[{"Dimensions", "[", 
+            RowBox[{"workerAssignments", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"assignmentLen", "\[Equal]", "0"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"workerAssignments", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+             RowBox[{"{", "0", "}"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"assignmentLen", "=", "1"}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"index", "[", 
+             RowBox[{"workerAssignments", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "assignmentLen"}], "]"}], "]"}], "]"}], 
+            "\[NotEqual]", 
+            RowBox[{"-", "1"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"workerAssignments", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "=", 
+            RowBox[{"Append", "[", 
+             RowBox[{
+              RowBox[{"workerAssignments", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"finalEndTime", "-", 
+               RowBox[{"workerEndTimes", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}]}], "]"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"workerAssignments", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "assignmentLen"}], "]"}], "]"}], "=", 
+             RowBox[{"finalEndTime", "-", 
+              RowBox[{"workerEndTimes", "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}]}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"workerEndTimes", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "=", "finalEndTime"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"workerAssignments", ",", "finalEndTime"}], "}"}]}], 
+   "\[IndentingNewLine]", ")"}]}]], "Input",
+ CellChangeTimes->{{3.814533061420351*^9, 3.814533143475996*^9}, {
+   3.81453319488483*^9, 3.8145332521786613`*^9}, {3.8145332822385263`*^9, 
+   3.814533283300026*^9}, 3.814533325777998*^9, {3.8145334298405743`*^9, 
+   3.814533456815545*^9}, {3.814533724274432*^9, 3.8145338209198017`*^9}, {
+   3.8145348807722282`*^9, 3.8145348820628242`*^9}, {3.814534963772996*^9, 
+   3.81453496458615*^9}, {3.814535059233477*^9, 3.81453522470439*^9}, {
+   3.814535302724812*^9, 3.8145355479859667`*^9}, {3.814535607277596*^9, 
+   3.814535682966044*^9}, {3.8145357137045116`*^9, 3.8145357938410187`*^9}, {
+   3.8145360141995*^9, 3.814536016309526*^9}, {3.814536083833473*^9, 
+   3.814536202039571*^9}, {3.814536269243917*^9, 3.814536278171589*^9}, {
+   3.814536336241042*^9, 3.814536347770505*^9}, {3.8145364033809032`*^9, 
+   3.814536550285879*^9}, {3.8145366016135807`*^9, 3.814536697255288*^9}, {
+   3.814536742002441*^9, 3.814536768778616*^9}, {3.8145368119153833`*^9, 
+   3.814536900289384*^9}, {3.81453696487761*^9, 3.814536987315466*^9}, {
+   3.814537096459462*^9, 3.814537128148364*^9}, {3.8145371790933037`*^9, 
+   3.81453735711616*^9}, {3.81453739548621*^9, 3.814537723558709*^9}, {
+   3.814537783114069*^9, 3.8145378052342453`*^9}},
+ CellLabel->
+  "In[498]:=",ExpressionUUID->"bb4d2ebf-1770-44b7-a2e2-3a0325c5ecb9"]
+}, Open  ]],
+
+Cell["Critical Path Algorithm", "Section",
+ CellChangeTimes->{{3.81419429912871*^9, 
+  3.814194308614972*^9}},ExpressionUUID->"145cf911-3f70-401b-83f1-\
+6882f1aaccd5"]
+}, Open  ]]
+},
+WindowSize->{1024, 938},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2fccf3dc-d62a-46a1-9173-8dbc1603f3e4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 153, 3, 98, "Title",ExpressionUUID->"d861d0ba-2ddb-4103-913d-46dbc87c26f5"],
+Cell[CellGroupData[{
+Cell[758, 29, 154, 3, 67, "Section",ExpressionUUID->"a90e9b44-7071-438c-9bcb-d8b91d54a929"],
+Cell[CellGroupData[{
+Cell[937, 36, 160, 3, 54, "Subsection",ExpressionUUID->"0c0b740d-80f4-4745-9681-468271a18257"],
+Cell[1100, 41, 3727, 80, 787, "Input",ExpressionUUID->"50101e97-3fdc-48f8-b96f-d590cfc974c6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4864, 126, 230, 4, 54, "Subsection",ExpressionUUID->"72cd933e-8b9c-41d6-b364-61070ee21384"],
+Cell[5097, 132, 2501, 54, 283, "Input",ExpressionUUID->"b47ed5fa-8a25-4405-a475-958713b0f85e"],
+Cell[7601, 188, 1546, 35, 178, "Input",ExpressionUUID->"f12cdc99-01f1-42a1-aaf4-d2668f62cced"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9184, 228, 223, 3, 54, "Subsection",ExpressionUUID->"7d4c17cf-3274-4514-9f03-975179d78415"],
+Cell[CellGroupData[{
+Cell[9432, 235, 1633, 49, 157, "Input",ExpressionUUID->"f1509851-779f-4156-b5d5-d7c8afbb05b6"],
+Cell[11068, 286, 286, 5, 24, "Print",ExpressionUUID->"f5ca8c7a-0ba9-4e5c-a656-85323df420f2"]
+}, Open  ]],
+Cell[11369, 294, 1603, 41, 115, "Input",ExpressionUUID->"aaa26d93-b0e2-417f-973b-dd91d5d6594a"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13021, 341, 193, 3, 67, "Section",ExpressionUUID->"f2378f0d-8552-47dc-ade0-10a07b320840"],
+Cell[13217, 346, 5447, 128, 724, "Input",ExpressionUUID->"fc735de6-a5c1-44b5-bc34-639dd9cd80e9"],
+Cell[18667, 476, 13008, 294, 1333, "Input",ExpressionUUID->"bb4d2ebf-1770-44b7-a2e2-3a0325c5ecb9"]
+}, Open  ]],
+Cell[31690, 773, 167, 3, 67, "Section",ExpressionUUID->"145cf911-3f70-401b-83f1-6882f1aaccd5"]
+}, Open  ]]
+}
+]
+*)
+
