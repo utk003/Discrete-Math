@@ -82,9 +82,11 @@ If[loopedDependenciesChecker[],
 ```
 ```Mathematica
 dependencyMatrix = Table[Table[False, {j, numTasks}], {i, numTasks}];
-For[i = 1, i <= numTasks, i++,
-  dependenciesLength = Dimensions[dependencies[[i]]][[1]];
-  For[j = 1, j <= dependenciesLength, j++, dependencyMatrix[[i, index[dependencies[[i, j]]]]] = True]
+For[i$dependencyMaker = 1, i$dependencyMaker <= numTasks, i$dependencyMaker++,
+  dependenciesLength = Dimensions[dependencies[[i$dependencyMaker]]][[1]];
+  For[j$dependencyMaker = 1, j$dependencyMaker <= dependenciesLength, j$dependencyMaker++,
+    dependencyMatrix[[i$dependencyMaker, index[dependencies[[i$dependencyMaker, j$dependencyMaker]]]]] = True
+  ]
 ]
 ```
 
@@ -97,24 +99,22 @@ addValidTasksFromList[fromList_, dependencyMat_, toList_] := (
 
   For[i$addValidTasksFromList = numAvailableTasks$addValidTasksFromList, i$addValidTasksFromList >= 1, i$addValidTasksFromList--,
     If[ContainsOnly[dependencyMat[[index[fromList$addValidTasksFromList[[i$addValidTasksFromList]]]]], {False}],
-     toList$addValidTasksFromList = Append[toList$addValidTasksFromList, fromList$addValidTasksFromList[[i$addValidTasksFromList]]];
-     fromList$addValidTasksFromList = Delete[fromList$addValidTasksFromList, i$addValidTasksFromList];
+      toList$addValidTasksFromList = Append[toList$addValidTasksFromList, fromList$addValidTasksFromList[[i$addValidTasksFromList]]];
+      fromList$addValidTasksFromList = Delete[fromList$addValidTasksFromList, i$addValidTasksFromList];
     ];
   ];
   {fromList$addValidTasksFromList, toList$addValidTasksFromList}
 )
 
-inputSortedDecreasing = Sort[input, #1[[2]] > #2[[2]] &];
-inputSortedDecreasing = Table[inputSortedDecreasing[[i, 1]], {i, numTasks}];
-giveKSlowestTasks[validTasks_, k_] := (
+giveKSlowestTasks[validTasks_, k_, sortedTasks_] := (
   If[Dimensions[validTasks][[1]] <= k,
     validTasks,
     kSlowest$giveKSlowestTasks = {};
     count$giveKSlowestTasks = 0;
     i$giveKSlowestTasks = 1;
     While[i$giveKSlowestTasks <= numTasks && count$giveKSlowestTasks < k,
-      If[ContainsAny[validTasks, {inputSortedDecreasing[[i$giveKSlowestTasks]]}],
-        kSlowest$giveKSlowestTasks = Append[kSlowest$giveKSlowestTasks, inputSortedDecreasing[[i$giveKSlowestTasks]]];
+      If[ContainsAny[validTasks, {sortedTasks[[i$giveKSlowestTasks]]}],
+        kSlowest$giveKSlowestTasks = Append[kSlowest$giveKSlowestTasks, sortedTasks[[i$giveKSlowestTasks]]];
         count$giveKSlowestTasks++;
       ];
       i$giveKSlowestTasks++;
@@ -124,76 +124,170 @@ giveKSlowestTasks[validTasks_, k_] := (
 )
 ```
 ```Mathematica
-decreasingTimeAlgorithm[] := (
-  remainingTasks = tasks;
-  currentlyValidTasks = {};
-  depMatCopy = dependencyMatrix;
+decreasingTimeAlgorithm[sortedTasks_] := (
+  remainingTasks$decreasingTimeAlgorithm = tasks;
+  currentlyValidTasks$decreasingTimeAlgorithm = {};
+  depMatCopy$decreasingTimeAlgorithm = dependencyMatrix;
 
-  workerAssignments = Table[{}, {i, numTeams}];
-  workerEndTimes = Table[0, {i, numTeams}];
+  workerAssignments$decreasingTimeAlgorithm = Table[{}, {i, numTeams}];
+  workerEndTimes$decreasingTimeAlgorithm = Table[0, {i, numTeams}];
 
-  time = 0;
-  While[! ContainsOnly[remainingTasks, {}] || ! ContainsOnly[currentlyValidTasks, {}],
-    For[i = 1, i <= numTeams, i++,
-      If[workerEndTimes[[i]] == time,
-        prevTaskIndex = index[Last[workerAssignments[[i]], 0]];
-        If[prevTaskIndex != -1,
-          For[j = 1, j <= numTasks, j++, depMatCopy[[j, prevTaskIndex]] = False]
+  time$decreasingTimeAlgorithm = 0;
+  While[! ContainsOnly[remainingTasks$decreasingTimeAlgorithm, {}] || ! ContainsOnly[currentlyValidTasks$decreasingTimeAlgorithm, {}],
+    For[i$decreasingTimeAlgorithm = 1, i$decreasingTimeAlgorithm <= numTeams, i$decreasingTimeAlgorithm++,
+      If[workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] == time$decreasingTimeAlgorithm,
+        prevTaskIndex$decreasingTimeAlgorithm = index[Last[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]], 0]];
+        If[prevTaskIndex$decreasingTimeAlgorithm != -1,
+          For[j$decreasingTimeAlgorithm = 1, j$decreasingTimeAlgorithm <= numTasks, j$decreasingTimeAlgorithm++,
+            depMatCopy$decreasingTimeAlgorithm[[j$decreasingTimeAlgorithm, prevTaskIndex$decreasingTimeAlgorithm]] = False
+          ]
         ]
       ]
     ];
 
-    validTasksReturnValue = addValidTasksFromList[remainingTasks, depMatCopy, currentlyValidTasks];
-    remainingTasks = validTasksReturnValue[[1]];
-    currentlyValidTasks = validTasksReturnValue[[2]];
+    validTasksReturnValue$decreasingTimeAlgorithm = addValidTasksFromList[remainingTasks$decreasingTimeAlgorithm, depMatCopy$decreasingTimeAlgorithm, currentlyValidTasks$decreasingTimeAlgorithm];
+    remainingTasks$decreasingTimeAlgorithm = validTasksReturnValue$decreasingTimeAlgorithm[[1]];
+    currentlyValidTasks$decreasingTimeAlgorithm = validTasksReturnValue$decreasingTimeAlgorithm[[2]];
 
-    workerCountAvailable = 0;
-    For[i = 1, i <= numTeams, i++, If[workerEndTimes[[i]] <= time, workerCountAvailable++]];
-    slowestTasks = giveKSlowestTasks[currentlyValidTasks, workerCountAvailable];
+    workerCountAvailable$decreasingTimeAlgorithm = 0;
+    For[i$decreasingTimeAlgorithm = 1, i$decreasingTimeAlgorithm <= numTeams, i$decreasingTimeAlgorithm++,
+      If[workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] <= time$decreasingTimeAlgorithm,
+        workerCountAvailable$decreasingTimeAlgorithm++
+      ]
+    ];
+    slowestTasks$decreasingTimeAlgorithm = giveKSlowestTasks[currentlyValidTasks$decreasingTimeAlgorithm, workerCountAvailable$decreasingTimeAlgorithm, sortedTasks];
 
-    numTasksToGive = Dimensions[slowestTasks][[1]];
-    For[i = 1, i <= numTeams && numTasksToGive > 0, i++,
-      If[workerEndTimes[[i]] <= time,
-        workerAssignments[[i]] = Append[workerAssignments[[i]], slowestTasks[[1]]];
-        workerEndTimes[[i]] = time + times[[index[slowestTasks[[1]]]]];
-        numTasksToGive--;
-        currentlyValidTasks = Delete[currentlyValidTasks, index[slowestTasks[[1]], currentlyValidTasks]];
-        slowestTasks = Delete[slowestTasks, 1];
+    numTasksToGive$decreasingTimeAlgorithm = Dimensions[slowestTasks$decreasingTimeAlgorithm][[1]];
+    For[i$decreasingTimeAlgorithm = 1, i$decreasingTimeAlgorithm <= numTeams && numTasksToGive$decreasingTimeAlgorithm > 0, i$decreasingTimeAlgorithm++,
+      If[workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] <= time$decreasingTimeAlgorithm,
+        workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = Append[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]], slowestTasks$decreasingTimeAlgorithm[[1]]];
+        workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = time$decreasingTimeAlgorithm + times[[index[slowestTasks$decreasingTimeAlgorithm[[1]]]]];
+        numTasksToGive$decreasingTimeAlgorithm--;
+        currentlyValidTasks$decreasingTimeAlgorithm = Delete[currentlyValidTasks$decreasingTimeAlgorithm, index[slowestTasks$decreasingTimeAlgorithm[[1]], currentlyValidTasks$decreasingTimeAlgorithm]];
+        slowestTasks$decreasingTimeAlgorithm = Delete[slowestTasks$decreasingTimeAlgorithm, 1];
       ]
     ];
 
-    For[, i <= numTeams, i++,
-      If[workerEndTimes[[i]] <= time,
-        assignmentLen = Dimensions[workerAssignments[[i]]][[1]];
-        If[assignmentLen == 0,
-          workerAssignments[[i]] = {0};
-          assignmentLen = 1;
+    For[, i$decreasingTimeAlgorithm <= numTeams, i$decreasingTimeAlgorithm++,
+      If[workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] <= time$decreasingTimeAlgorithm,
+        assignmentLen$decreasingTimeAlgorithm = Dimensions[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]]][[1]];
+        If[assignmentLen$decreasingTimeAlgorithm == 0,
+          workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = {0};
+          assignmentLen$decreasingTimeAlgorithm = 1;
         ];
-        If[index[workerAssignments[[i, assignmentLen]]] != -1,
-          workerAssignments[[i]] = Append[workerAssignments[[i]], 1],
-          workerAssignments[[i, assignmentLen]]++;
+        If[index[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm, assignmentLen$decreasingTimeAlgorithm]]] != -1,
+          workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = Append[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]], 1],
+          workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm, assignmentLen$decreasingTimeAlgorithm]]++;
         ]
       ]
     ];
-    time++;
+    time$decreasingTimeAlgorithm++;
   ];
-  finalEndTime = Max[workerEndTimes];
-  For[i = 1, i <= numTeams, i++,
-    If[workerEndTimes[[i]] < finalEndTime,
-      assignmentLen = Dimensions[workerAssignments[[i]]][[1]];
-      If[assignmentLen == 0,
-        workerAssignments[[i]] = {0};
-        assignmentLen = 1;
+  finalEndTime$decreasingTimeAlgorithm = Max[workerEndTimes$decreasingTimeAlgorithm];
+  For[i$decreasingTimeAlgorithm = 1, i$decreasingTimeAlgorithm <= numTeams, i$decreasingTimeAlgorithm++,
+    If[workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] < finalEndTime$decreasingTimeAlgorithm,
+      assignmentLen$decreasingTimeAlgorithm = Dimensions[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]]][[1]];
+      If[assignmentLen$decreasingTimeAlgorithm == 0,
+        workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = {0};
+        assignmentLen$decreasingTimeAlgorithm = 1;
       ];
-      If[index[workerAssignments[[i, assignmentLen]]] != -1,
-        workerAssignments[[i]] = Append[workerAssignments[[i]], finalEndTime - workerEndTimes[[i]]],
-        workerAssignments[[i, assignmentLen]] = finalEndTime - workerEndTimes[[i]];
+      If[index[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm, assignmentLen$decreasingTimeAlgorithm]]] != -1,
+        workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = Append[workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]], finalEndTime$decreasingTimeAlgorithm - workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]]],
+        workerAssignments$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm, assignmentLen$decreasingTimeAlgorithm]] = finalEndTime$decreasingTimeAlgorithm - workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]];
       ];
-      workerEndTimes[[i]] = finalEndTime;
+      workerEndTimes$decreasingTimeAlgorithm[[i$decreasingTimeAlgorithm]] = finalEndTime$decreasingTimeAlgorithm;
     ]
   ];
-  {workerAssignments, finalEndTime}
+  {workerAssignments$decreasingTimeAlgorithm, finalEndTime$decreasingTimeAlgorithm}
 )
 ```
 
 ## Critical Path Algorithm
+### Helper Methods
+```Mathematica
+addNonDependents[depMat_, addToList_] := (
+  addToList$addNonDependents = addToList;
+  For[i$addNonDependents = 1, i$addNonDependents <= numTasks, i$addNonDependents++,
+    If[ContainsAny[addToList$addNonDependents, {tasks[[i$addNonDependents]]}], Continue[]];
+    If[ContainsAny[Table[depMat[[k, i$addNonDependents]], {k, numTasks}], {True}], Continue[]];
+    addToList$addNonDependents = Append[addToList$addNonDependents, tasks[[i$addNonDependents]]];
+  ];
+  addToList$addNonDependents
+)
+```
+
+### Backflow Algorithm
+```Mathematica
+getCriticalTimes[] := (
+  depMatCopy$getCriticalTimes = dependencyMatrix;
+  criticalTimes$getCriticalTimes = Table[{}, {k, numTasks}];
+  workingOptions$getCriticalTimes = addNonDependents[depMatCopy$getCriticalTimes, {}];
+  For[i$getCriticalTimes = 1, i$getCriticalTimes <= numTasks, i$getCriticalTimes++,
+    max$getCriticalTimes = 0;
+    ind$getCriticalTimes = index[workingOptions$getCriticalTimes[[i$getCriticalTimes]]];
+    For[j$getCriticalTimes = 1, j$getCriticalTimes <= numTasks, j$getCriticalTimes++,
+      If[dependencyMatrix[[j$getCriticalTimes, ind$getCriticalTimes]],
+        max$getCriticalTimes = Max[max$getCriticalTimes, criticalTimes$getCriticalTimes[[j$getCriticalTimes, 2]]]
+      ];
+    ];
+    criticalTimes$getCriticalTimes[[ind$getCriticalTimes]] = {tasks[[ind$getCriticalTimes]], max$getCriticalTimes + times[[ind$getCriticalTimes]]};
+    For[j$getCriticalTimes = 1, j$getCriticalTimes <= numTasks, j$getCriticalTimes++,
+      depMatCopy$getCriticalTimes[[ind$getCriticalTimes, j$getCriticalTimes]] = False;
+    ];
+    workingOptions$getCriticalTimes = addNonDependents[depMatCopy$getCriticalTimes, workingOptions$getCriticalTimes];
+  ];
+  criticalTimes$getCriticalTimes
+)
+```
+
+## Output
+### Helper Method
+```Mathematica
+interpretAssignments[assignments_, totTime_] := (
+  interp$interpretAssignments = Table[0, {k, totTime}];
+  ind$interpretAssignments = 0;
+  start$interpretAssignments = 0;
+  currLength$interpretAssignments = 0;
+  currText$interpretAssignments = "";
+  For[t$interpretAssignments = 1, t$interpretAssignments <= totTime, t$interpretAssignments++,
+    If[t$interpretAssignments > start$interpretAssignments + currLength$interpretAssignments,
+      ind$interpretAssignments++;
+      start$interpretAssignments = t$interpretAssignments - 1;
+      index$interpretAssignments = index[assignments[[ind$interpretAssignments]]];
+      If[index$interpretAssignments != -1,
+        currLength$interpretAssignments = times[[index$interpretAssignments]];
+        currText$interpretAssignments = assignments[[ind$interpretAssignments]],
+        currLength$interpretAssignments = assignments[[ind$interpretAssignments]];
+        currText$interpretAssignments = "Idle";
+      ];
+    ];
+    interp$interpretAssignments[[t$interpretAssignments]] = currText$interpretAssignments;
+  ];
+  interp$interpretAssignments
+)
+
+printOutput[result_] := (
+  Print["Time taken: ", result[[2]]];
+  Print["Task assignments:"];
+  Print[Prepend[
+      Table[Prepend[interpretAssignments[result[[1, k]], result[[2]]], "Team " <> ToString[k]], {k, numTeams}],
+      Prepend[Table[k, {k, result[[2]]}], "Team #"]
+    ] // TableForm
+  ];
+)
+```
+
+### Decreasing Time Algorithm Output
+
+```Mathematica
+inputSortedTrueTime = Sort[input, #1[[2]] > #2[[2]] &];
+inputSortedTrueTime = Table[inputSortedTrueTime[[i, 1]], {i, numTasks}];
+printOutput[decreasingTimeAlgorithm[inputSortedTrueTime]]
+```
+
+### Critical Path Algorithm Output
+```Mathematica
+inputSortedCriticalTime = Sort[getCriticalTimes[], #1[[2]] > #2[[2]] &];
+inputSortedCriticalTime = Table[inputSortedCriticalTime[[i, 1]], {i, numTasks}];
+printOutput[decreasingTimeAlgorithm[inputSortedCriticalTime]]
+```
