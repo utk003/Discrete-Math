@@ -10,16 +10,81 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     14067,        401]
-NotebookOptionsPosition[     11958,        352]
-NotebookOutlinePosition[     12353,        368]
-CellTagsIndexPosition[     12310,        365]
+NotebookDataLength[     17521,        467]
+NotebookOptionsPosition[     15308,        417]
+NotebookOutlinePosition[     15703,        433]
+CellTagsIndexPosition[     15660,        430]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "MIT", " ", "License", "\n", "\[IndentingNewLine]", "Copyright", " ", 
+    RowBox[{"(", "c", ")"}], " ", "2020", " ", "Utkarsh", " ", "Priyam", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "Permission", " ", "is", 
+    " ", "hereby", " ", "granted"}], ",", 
+   RowBox[{"free", " ", "of", " ", "charge"}], ",", 
+   RowBox[{
+   "to", " ", "any", " ", "person", " ", "obtaining", " ", "a", " ", "copy", 
+    "\n", "of", " ", "this", " ", "software", " ", "and", " ", "associated", 
+    " ", "documentation", " ", "files", " ", 
+    RowBox[{"(", 
+     RowBox[{"the", " ", "\"\<Software\>\""}], ")"}]}], ",", 
+   RowBox[{
+   "to", " ", "deal", "\n", "in", " ", "the", " ", "Software", " ", "without",
+     " ", "restriction"}], ",", 
+   RowBox[{
+   "including", " ", "without", " ", "limitation", " ", "the", " ", "rights", 
+    "\n", "to", " ", "use"}], ",", "copy", ",", "modify", ",", "merge", ",", 
+   "publish", ",", "distribute", ",", "sublicense", ",", 
+   RowBox[{
+    RowBox[{"and", "/", "or"}], " ", "sell", "\n", "copies", " ", "of", " ", 
+    "the", " ", "Software"}], ",", 
+   RowBox[{
+   "and", " ", "to", " ", "permit", " ", "persons", " ", "to", " ", "whom", 
+    " ", "the", " ", "Software", " ", "is", "\n", "furnished", " ", "to", " ",
+     "do", " ", "so"}], ",", 
+   RowBox[{"subject", " ", "to", " ", "the", " ", "following", " ", 
+    RowBox[{"conditions", ":", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+     "The", " ", "above", " ", "copyright", " ", "notice", " ", "and", " ", 
+      "this", " ", "permission", " ", "notice", " ", "shall", " ", "be", " ", 
+      "included", " ", "in", " ", "all", "\n", "copies", " ", "or", " ", 
+      "substantial", " ", "portions", " ", "of", " ", "the", " ", "Software", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "THE", " ", "SOFTWARE", 
+      " ", "IS", " ", "PROVIDED", " ", "\"\<AS IS\>\""}]}]}], ",", 
+   RowBox[{"WITHOUT", " ", "WARRANTY", " ", "OF", " ", "ANY", " ", "KIND"}], 
+   ",", 
+   RowBox[{"EXPRESS", " ", "OR", "\[IndentingNewLine]", "IMPLIED"}], ",", 
+   RowBox[{
+   "INCLUDING", " ", "BUT", " ", "NOT", " ", "LIMITED", " ", "TO", " ", "THE",
+     " ", "WARRANTIES", " ", "OF", " ", "MERCHANTABILITY"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "FITNESS", " ", "FOR", " ", "A", " ", "PARTICULAR", " ", "PURPOSE", " ", 
+    "AND", " ", 
+    RowBox[{"NONINFRINGEMENT", ".", " ", "IN"}], " ", "NO", " ", "EVENT", " ",
+     "SHALL", " ", "THE", "\n", "AUTHORS", " ", "OR", " ", "COPYRIGHT", " ", 
+    "HOLDERS", " ", "BE", " ", "LIABLE", " ", "FOR", " ", "ANY", " ", 
+    "CLAIM"}], ",", 
+   RowBox[{"DAMAGES", " ", "OR", " ", "OTHER", "\n", "LIABILITY"}], ",", 
+   RowBox[{
+   "WHETHER", " ", "IN", " ", "AN", " ", "ACTION", " ", "OF", " ", 
+    "CONTRACT"}], ",", 
+   RowBox[{"TORT", " ", "OR", " ", "OTHERWISE"}], ",", 
+   RowBox[{"ARISING", " ", "FROM"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+   "OUT", " ", "OF", " ", "OR", " ", "IN", " ", "CONNECTION", " ", "WITH", 
+    " ", "THE", " ", "SOFTWARE", " ", "OR", " ", "THE", " ", "USE", " ", "OR",
+     " ", "OTHER", " ", "DEALINGS", " ", "IN", " ", "THE", "\n", 
+    RowBox[{"SOFTWARE", "."}]}]}], "\[IndentingNewLine]", "*)"}]], "Input",Exp\
+ressionUUID->"54f77d09-9b71-4016-99ee-abfafc20b3aa"],
 
 Cell[CellGroupData[{
+
 Cell["Sharing", "Title",
  CellChangeTimes->{{3.8123741777703447`*^9, 3.8123741826148787`*^9}, 
    3.81454458377238*^9},ExpressionUUID->"c902b61f-759f-4744-8afd-\
@@ -367,37 +432,38 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 3347, 63, 493, "Input",ExpressionUUID->"54f77d09-9b71-4016-99ee-abfafc20b3aa"],
 Cell[CellGroupData[{
-Cell[580, 22, 176, 3, 98, "Title",ExpressionUUID->"c902b61f-759f-4744-8afd-fbd3f34b034d"],
+Cell[3930, 87, 176, 3, 98, "Title",ExpressionUUID->"c902b61f-759f-4744-8afd-fbd3f34b034d"],
 Cell[CellGroupData[{
-Cell[781, 29, 168, 3, 67, "Section",ExpressionUUID->"7bf291e6-af95-453b-b720-ee93118ab1d8"],
+Cell[4131, 94, 168, 3, 67, "Section",ExpressionUUID->"7bf291e6-af95-453b-b720-ee93118ab1d8"],
 Cell[CellGroupData[{
-Cell[974, 36, 163, 3, 54, "Subsection",ExpressionUUID->"83238c6c-abec-44f5-ab99-80af99820c11"],
+Cell[4324, 101, 163, 3, 54, "Subsection",ExpressionUUID->"83238c6c-abec-44f5-ab99-80af99820c11"],
 Cell[CellGroupData[{
-Cell[1162, 43, 1153, 28, 178, "Input",ExpressionUUID->"ed77bfdd-96ea-4227-beba-c166f19411be"],
-Cell[2318, 73, 958, 23, 114, "Output",ExpressionUUID->"1a3f1255-bced-4d55-9f0f-6c3499751dcb"]
+Cell[4512, 108, 1153, 28, 178, "Input",ExpressionUUID->"ed77bfdd-96ea-4227-beba-c166f19411be"],
+Cell[5668, 138, 958, 23, 114, "Output",ExpressionUUID->"1a3f1255-bced-4d55-9f0f-6c3499751dcb"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3325, 102, 204, 3, 54, "Subsection",ExpressionUUID->"68ee42ca-3277-4bb1-ab63-8c6d4bccac08"],
-Cell[3532, 107, 1864, 56, 157, "Input",ExpressionUUID->"a27e0e12-a287-48c0-9970-ac1b73d42895"]
+Cell[6675, 167, 204, 3, 54, "Subsection",ExpressionUUID->"68ee42ca-3277-4bb1-ab63-8c6d4bccac08"],
+Cell[6882, 172, 1864, 56, 157, "Input",ExpressionUUID->"a27e0e12-a287-48c0-9970-ac1b73d42895"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5433, 168, 212, 4, 54, "Subsection",ExpressionUUID->"28a4e820-9a04-49d5-ae88-8c92461ba176"],
-Cell[5648, 174, 2637, 71, 157, "Input",ExpressionUUID->"19344a23-2f71-4d4b-a003-81b7acad1e50"]
+Cell[8783, 233, 212, 4, 54, "Subsection",ExpressionUUID->"28a4e820-9a04-49d5-ae88-8c92461ba176"],
+Cell[8998, 239, 2637, 71, 157, "Input",ExpressionUUID->"19344a23-2f71-4d4b-a003-81b7acad1e50"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8322, 250, 194, 3, 54, "Subsection",ExpressionUUID->"b3a8fb3b-55d1-4a53-90c9-0aaa5f54b688"],
-Cell[8519, 255, 848, 21, 94, "Input",ExpressionUUID->"be079fef-a18c-41f1-b72c-1cef03999124"]
+Cell[11672, 315, 194, 3, 54, "Subsection",ExpressionUUID->"b3a8fb3b-55d1-4a53-90c9-0aaa5f54b688"],
+Cell[11869, 320, 848, 21, 94, "Input",ExpressionUUID->"be079fef-a18c-41f1-b72c-1cef03999124"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9404, 281, 207, 3, 54, "Subsection",ExpressionUUID->"7512bbfe-b8d5-40ba-841f-9f39dbb9f36f"],
+Cell[12754, 346, 207, 3, 54, "Subsection",ExpressionUUID->"7512bbfe-b8d5-40ba-841f-9f39dbb9f36f"],
 Cell[CellGroupData[{
-Cell[9636, 288, 1255, 31, 52, "Input",ExpressionUUID->"9b338482-8f89-4a5a-8d93-c68c2fba962a"],
+Cell[12986, 353, 1255, 31, 52, "Input",ExpressionUUID->"9b338482-8f89-4a5a-8d93-c68c2fba962a"],
 Cell[CellGroupData[{
-Cell[10916, 323, 325, 6, 24, "Print",ExpressionUUID->"fdc1aa15-afbf-4fdc-a92f-25efc5eb046a"],
-Cell[11244, 331, 328, 6, 24, "Print",ExpressionUUID->"84591128-5480-4400-8607-d8c7ac17f87b"],
-Cell[11575, 339, 319, 6, 24, "Print",ExpressionUUID->"78878877-a4b5-417d-9fe6-a3747023431f"]
+Cell[14266, 388, 325, 6, 24, "Print",ExpressionUUID->"fdc1aa15-afbf-4fdc-a92f-25efc5eb046a"],
+Cell[14594, 396, 328, 6, 24, "Print",ExpressionUUID->"84591128-5480-4400-8607-d8c7ac17f87b"],
+Cell[14925, 404, 319, 6, 24, "Print",ExpressionUUID->"78878877-a4b5-417d-9fe6-a3747023431f"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

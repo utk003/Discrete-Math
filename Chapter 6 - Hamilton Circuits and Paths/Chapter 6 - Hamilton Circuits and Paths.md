@@ -18,8 +18,8 @@ input = {
 input // TableForm
 ```
 
-## Nearest Neighbor/Repeated Nearest Neighbor Algorithms
-### NNA Search
+## Nearest Neighbor/Repeated Nearest Neighbor Algorithms (Do NOT Modify)
+### NNA Search (Do NOT Modify)
 ```Mathematica
 runNNASearch[inputArr_, posMap_, startIndex_] := (
   posMapLen = Dimensions[posMap][[1]];
@@ -49,7 +49,7 @@ runNNASearch[inputArr_, posMap_, startIndex_] := (
 )
 ```
 
-### RNNA Search
+### RNNA Search (Do NOT Modify)
 ```Mathematica
 result = {};
 dist = -1;
@@ -62,8 +62,123 @@ For[i = 1, i <= len, i++,
     result = res[[2]];
   ];
 ]
-Table[input[[1, result[[i]]]], {i, 1, len}]
+Append[Table[input[[1, result[[i]]]], {i, 1, len}], input[[1, result[[1]]]]]
 dist
+```
+
+## Cheapest Link (Do NOT Modify)
+### Helper Methods (Do NOT Modify)
+```Mathematica
+cheapestLink[posMap_, weights_] := (
+  weightsCopy = weights;
+  posMapLen = Dimensions[posMap][[1]];
+  min = \[Infinity];
+  For[r = 1, r <= posMapLen, r++,
+    For[c = 1, c <= posMapLen, c++,
+      val = weightsCopy[[posMap[[r]], posMap[[c]]]];
+      If[val >= 0 && val < min, min = val]
+    ];
+  ];
+  ans = {1, 1};
+  For[r = 1, r <= posMapLen, r++,
+    For[c = 1, c <= posMapLen, c++,
+      If[weightsCopy[[posMap[[r]], posMap[[c]]]] == min,
+        ans = {r, c};
+        Break[];
+      ];
+    ];
+  ];
+  p1 = posMap[[ans[[1]]]];
+  p2 = posMap[[ans[[2]]]];
+  weightsCopy[[p1, p2]] = weightsCopy[[p2, p1]] = \[Infinity];
+  {ans, weightsCopy}
+)
+
+clearVertex[posMap_, weights_, p1_, p2_] := (
+  weightsCopy = weights;
+  posMapLen = Dimensions[posMap][[1]];
+  weightsSize = Dimensions[weightsCopy][[1]];
+  If[p1 == p2 || p1 > posMapLen || p2 > posMapLen || p1 < 1 || p2 < 1 || weightsCopy[[posMap[[p1]], posMap[[p2]]]] != \[Infinity],
+    Return[weightsCopy]
+  ];
+  For[i$clearVertex = 2, i$clearVertex <= weightsSize, i$clearVertex++,
+    If[i$clearVertex != posMap[[p1]] && weightsCopy[[posMap[[p1]], i$clearVertex]] == \[Infinity],
+      weightsCopy[[i$clearVertex, posMap[[p2]]]] = weightsCopy[[posMap[[p2]], i$clearVertex]] = \[Infinity];
+    ];
+    If[i$clearVertex != posMap[[p2]] && weightsCopy[[posMap[[p2]], i$clearVertex]] == \[Infinity],
+      weightsCopy[[i$clearVertex, posMap[[p1]]]] = weightsCopy[[posMap[[p1]], i$clearVertex]] = \[Infinity];
+    ];
+  ];
+  weightsCopy
+)
+
+clearVertices[posMap_, weights_] := (
+  tempWeights = weights;
+  numVerts = Dimensions[input][[1]] - 1;
+  For[i$clearVertices = 1, i$clearVertices <= numVerts, i$clearVertices++,
+    For[j$clearVertices = 1, j$clearVertices <= numVerts, j$clearVertices++,
+      tempWeights = clearVertex[posMap, tempWeights, i$clearVertices, j$clearVertices];
+    ];
+  ];
+  tempWeights
+)
+
+fixRows[weights_, vertDegrees_] := (
+  copyWeights = weights;
+  For[i = 1, i <= numVerts, i++,
+    If[vertDegrees[[i]] >= 2,
+      For[i2 = 1, i2 <= numVerts, i2++,
+        If[copyWeights[[i + 1, i2 + 1]] != \[Infinity],
+          copyWeights[[i + 1, i2 + 1]] = copyWeights[[i2 + 1, i + 1]] = -\[Infinity]
+        ]
+      ]
+    ];
+  ];
+  copyWeights
+)
+
+constructPath[edges_] := (
+  copyEdges = edges;
+  res = {1};
+  len = Dimensions[copyEdges][[1]];
+  curr = 1;
+  While[len > 0,
+    For[i = 1, i <= len, i++,
+      If[copyEdges[[i, 1]] == curr || copyEdges[[i, 2]] == curr, Break[]]
+    ];
+    curr = Total[copyEdges[[i]]] - curr;
+    res = Append[res, curr];
+    copyEdges = Delete[copyEdges, i];
+    len--;
+  ];
+  res + 1
+)
+```
+
+### Cheapest Link Search (Do NOT Modify)
+```Mathematica
+numVertices = Dimensions[input][[1]] - 1;
+pMap = Table[k + 1, {k, numVertices}];
+costs = input;
+len = 1;
+path = {};
+degrees = Table[0, {k, numVertices}];
+While[len < numVertices,
+  result = cheapestLink[pMap, costs];
+  path = Append[path, result[[1]]];
+  degrees[[result[[1, 1]]]]++;
+  degrees[[result[[1, 2]]]]++;
+  costs = fixRows[clearVertices[pMap, result[[2]]], degrees];
+  len++;
+]
+last = {};
+For[i = 1, i < numVertices, i++, If[degrees[[i]] != 2, last = Append[last, i]]]
+path = Append[path, last];
+cost = 0;
+For[i = 1, i <= numVertices, i++, cost += input[[path[[i, 1]] + 1, path[[i, 2]] + 1]]]
+path = constructPath[path];
+Table[input[[1, path[[i]]]], {i, 1, numVertices + 1}]
+cost
 ```
 
 ## Brute Force Search
@@ -88,8 +203,8 @@ For[i = Dimensions[start][[1]], i > 0, i--,
     p2 = curr;
   ];
 ]
-Table[input[[1, p1[[i]]]], {i, 1, len}]
+Append[Table[input[[1, p1[[i]]]], {i, 1, len}], input[[1, p1[[1]]]]]
 min
-Table[input[[1, p2[[i]]]], {i, 1, len}]
+Append[Table[input[[1, p2[[i]]]], {i, 1, len}], input[[1, p2[[1]]]]]
 max
 ```
