@@ -71,6 +71,7 @@ generateSnowflakeOverlays[sides_, depth_, angle_] := Module[{res, len, i},
 ```Mathematica
 Graphics[{Black, Line[generateCurvePaths[{{-5, 0}, {5, 0}}, 5, \[Pi]/3]]}]
 ```
+![Koch Curve](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Koch%20Curve.png)
 ```Mathematica
 Graphics[{
   Black, Triangle[equiTriangle],
@@ -79,6 +80,7 @@ Graphics[{
   ]]
 }]
 ```
+![Koch Snowflake](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Koch%20Snowflake.png)
 ```Mathematica
 Graphics[{
   Black, Triangle[equiTriangle],
@@ -87,6 +89,7 @@ Graphics[{
   ]]
 }]
 ```
+![Koch Anti-Snowflake](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Koch%20Anti-Snowflake.png)
 
 ## Cesàro Curve, Snowflake, and Anti-Snowflake (Pure Generation)
 ```Mathematica
@@ -100,6 +103,7 @@ Graphics[{
   ]]
 }]
 ```
+![Cesaro Snowflake](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Cesaro%20Snowflake.png)
 ```Mathematica
 Graphics[{
   Black, Triangle[square],
@@ -108,6 +112,7 @@ Graphics[{
   ]]
 }]
 ```
+![Cesaro Anti-Snowflake](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Cesaro%20Anti-Snowflake.png)
 
 ## Sierpiński Triangle (Pure Generation)
 ```Mathematica
@@ -129,6 +134,7 @@ Graphics[{
   White, Triangle[generateOverlays[equiTriangle, 6]]
 }]
 ```
+![Sierpinski Triangle](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Sierpinski%20Triangle.png)
 
 ## Sierpiński Triangle (Twisted Generation)
 ```Mathematica
@@ -162,6 +168,7 @@ Graphics[{
   Black, Triangle[generateTwistedOverlays[equiTriangle, 6]]
 }]
 ```
+![Twisted Sierpinski Triangle](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Twisted%20Sierpinski%20Triangle.png)
 
 ## Sierpiński Carpet (Pure Generation)
 ```Mathematica
@@ -190,6 +197,7 @@ Graphics[{
   White, Polygon[generateCarpetOverlays[square, 5]]
 }]
 ```
+![Sierpinski Carpet](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Sierpinski%20Carpet.png)
 
 ## Sierpiński Triangle (Chaos Game Generation)
 ```Mathematica
@@ -201,6 +209,7 @@ For[i = 1, i <= 10000, i++,
 ]
 ListPlot[allpoints]
 ```
+![Sierpinski Triangle (Chaos)](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Sierpinski%20Triangle%202.png)
 
 ## Sierpiński Triangle Square Variant (Chaos Game Generation)
 ```Mathematica
@@ -224,6 +233,8 @@ coords = Table[{Re[seq[[k]]], Im[seq[[k]]]}, {k, Dimensions[seq][[1]]}];
 ComplexListPlot[seq]
 ListLinePlot[coords]
 ```
+![Mandelbrot Sequence](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Mandelbrot%20Sequence.png)
+![Mandelbrot Sequence (Connected)](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Mandelbrot%20Sequence%202.png)
 
 ## Mandelbrot Set
 ```Mathematica
@@ -261,3 +272,4 @@ For[a = -2, a <= 1, a += resolution,
 ```Mathematica
 ListPlot[set, PlotStyle -> colorList, AxesOrigin -> {-2.1, -1.6}]
 ```
+![Mandelbrot Set](https://github.com/utk003/Discrete-Math/blob/main/Chapter%2012%20-%20Fractals/graphics/Mandelbrot%20Set.png)
