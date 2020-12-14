@@ -59,3 +59,4 @@ ListLinePlot[{
   Table[{x, outs[[x]]}, {x, 1, upperBound}]
 }]
 ```
+![Output](https://github.com/utk003/Discrete-Math/blob/main/Project%201%20-%20Perfect%20Faro%20Shuffles/output.png)
