@@ -1,0 +1,1195 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     48961,       1187]
+NotebookOptionsPosition[     41604,       1078]
+NotebookOutlinePosition[     41998,       1094]
+CellTagsIndexPosition[     41955,       1091]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "MIT", " ", "License", "\n", "\[IndentingNewLine]", "Copyright", " ", 
+    RowBox[{"(", "c", ")"}], " ", "2020", " ", "Utkarsh", " ", "Priyam", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "Permission", " ", "is", 
+    " ", "hereby", " ", "granted"}], ",", 
+   RowBox[{"free", " ", "of", " ", "charge"}], ",", 
+   RowBox[{
+   "to", " ", "any", " ", "person", " ", "obtaining", " ", "a", " ", "copy", 
+    "\n", "of", " ", "this", " ", "software", " ", "and", " ", "associated", 
+    " ", "documentation", " ", "files", " ", 
+    RowBox[{"(", 
+     RowBox[{"the", " ", "\"\<Software\>\""}], ")"}]}], ",", 
+   RowBox[{
+   "to", " ", "deal", "\n", "in", " ", "the", " ", "Software", " ", "without",
+     " ", "restriction"}], ",", 
+   RowBox[{
+   "including", " ", "without", " ", "limitation", " ", "the", " ", "rights", 
+    "\n", "to", " ", "use"}], ",", "copy", ",", "modify", ",", "merge", ",", 
+   "publish", ",", "distribute", ",", "sublicense", ",", 
+   RowBox[{
+    RowBox[{"and", "/", "or"}], " ", "sell", "\n", "copies", " ", "of", " ", 
+    "the", " ", "Software"}], ",", 
+   RowBox[{
+   "and", " ", "to", " ", "permit", " ", "persons", " ", "to", " ", "whom", 
+    " ", "the", " ", "Software", " ", "is", "\n", "furnished", " ", "to", " ",
+     "do", " ", "so"}], ",", 
+   RowBox[{"subject", " ", "to", " ", "the", " ", "following", " ", 
+    RowBox[{"conditions", ":", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+     "The", " ", "above", " ", "copyright", " ", "notice", " ", "and", " ", 
+      "this", " ", "permission", " ", "notice", " ", "shall", " ", "be", " ", 
+      "included", " ", "in", " ", "all", "\n", "copies", " ", "or", " ", 
+      "substantial", " ", "portions", " ", "of", " ", "the", " ", "Software", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "THE", " ", "SOFTWARE", 
+      " ", "IS", " ", "PROVIDED", " ", "\"\<AS IS\>\""}]}]}], ",", 
+   RowBox[{"WITHOUT", " ", "WARRANTY", " ", "OF", " ", "ANY", " ", "KIND"}], 
+   ",", 
+   RowBox[{"EXPRESS", " ", "OR", "\[IndentingNewLine]", "IMPLIED"}], ",", 
+   RowBox[{
+   "INCLUDING", " ", "BUT", " ", "NOT", " ", "LIMITED", " ", "TO", " ", "THE",
+     " ", "WARRANTIES", " ", "OF", " ", "MERCHANTABILITY"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "FITNESS", " ", "FOR", " ", "A", " ", "PARTICULAR", " ", "PURPOSE", " ", 
+    "AND", " ", 
+    RowBox[{"NONINFRINGEMENT", ".", " ", "IN"}], " ", "NO", " ", "EVENT", " ",
+     "SHALL", " ", "THE", "\n", "AUTHORS", " ", "OR", " ", "COPYRIGHT", " ", 
+    "HOLDERS", " ", "BE", " ", "LIABLE", " ", "FOR", " ", "ANY", " ", 
+    "CLAIM"}], ",", 
+   RowBox[{"DAMAGES", " ", "OR", " ", "OTHER", "\n", "LIABILITY"}], ",", 
+   RowBox[{
+   "WHETHER", " ", "IN", " ", "AN", " ", "ACTION", " ", "OF", " ", 
+    "CONTRACT"}], ",", 
+   RowBox[{"TORT", " ", "OR", " ", "OTHERWISE"}], ",", 
+   RowBox[{"ARISING", " ", "FROM"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+   "OUT", " ", "OF", " ", "OR", " ", "IN", " ", "CONNECTION", " ", "WITH", 
+    " ", "THE", " ", "SOFTWARE", " ", "OR", " ", "THE", " ", "USE", " ", "OR",
+     " ", "OTHER", " ", "DEALINGS", " ", "IN", " ", "THE", "\n", 
+    RowBox[{"SOFTWARE", "."}]}]}], "\[IndentingNewLine]", "*)"}]], "Input",Exp\
+ressionUUID->"162ec82e-a421-4afc-9467-173c3660164a"],
+
+Cell[CellGroupData[{
+
+Cell["Apportionment", "Title",
+ CellChangeTimes->{{3.8122008564325943`*^9, 3.8122008727882023`*^9}, {
+  3.814544925511598*^9, 
+  3.814544925937078*^9}},ExpressionUUID->"ee03c5a5-b44f-4536-b319-\
+1b6d2acf1313"],
+
+Cell[CellGroupData[{
+
+Cell["Possible Methods of Apportionment (Do NOT Modify)", "Section",
+ CellChangeTimes->{{3.812200887125144*^9, 3.812200912486863*^9}, {
+  3.812201262179371*^9, 3.812201266120455*^9}, {3.812201355324646*^9, 
+  3.812201355586899*^9}},ExpressionUUID->"f7dde8e4-d265-4ce6-963a-\
+41fb43c424cc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"jefferson", "[", "x_", "]"}], ":=", 
+   RowBox[{"Floor", "[", "x", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"adams", "[", "x_", "]"}], ":=", 
+   RowBox[{"Ceiling", "[", "x", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"webster", "[", "x_", "]"}], ":=", 
+   RowBox[{"Round", "[", "x", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"geoMean", "[", "x_", "]"}], ":=", 
+  SqrtBox[
+   RowBox[{"x", 
+    RowBox[{"(", 
+     RowBox[{"x", "+", "1"}], ")"}]}]]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"huntingtonHill", "[", "x_", "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"x", ">", 
+     RowBox[{"geoMean", "[", 
+      RowBox[{"Floor", "[", "x", "]"}], "]"}]}], ",", 
+    RowBox[{"Ceiling", "[", "x", "]"}], ",", 
+    RowBox[{"Floor", "[", "x", "]"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.812198278055393*^9, 3.812198370549843*^9}, {
+  3.812201275349729*^9, 3.812201284069132*^9}, {3.814545745441217*^9, 
+  3.814545750968649*^9}},ExpressionUUID->"d918c230-b12f-4cb8-9fb8-\
+46a17c065c5a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Necessary Search Parameters", "Section",
+ CellChangeTimes->{{3.812200896660372*^9, 3.8122009187943697`*^9}, {
+  3.812201083740121*^9, 
+  3.812201096056959*^9}},ExpressionUUID->"bf59d647-be2d-4930-8b34-\
+949ce336b104"],
+
+Cell[CellGroupData[{
+
+Cell["Population/Quota Input", "Subsection",
+ CellChangeTimes->{{3.8122011005855703`*^9, 3.812201106607491*^9}, {
+  3.812201361652666*^9, 
+  3.8122013628301992`*^9}},ExpressionUUID->"9b6280a2-2e7d-4ab8-bee3-\
+2cce163ef04d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"State", " ", "census", " ", "data", " ", "import"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Drop", "[", 
+      RowBox[{
+       RowBox[{"Drop", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+          "Import", "[", "\"\</Users/up/Desktop/nst-est2019-01.xlsx\>\"", 
+           "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "9"}], "]"}], ",", 
+       RowBox[{"-", "7"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Drop", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"data", "[", 
+          RowBox[{"[", "k", "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", "1", ",", "51"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", "9", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"states", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"data", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", "50"}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"census", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "[", 
+          RowBox[{"[", "j", "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "50"}], "}"}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "2", ",", "13"}], "}"}]}], "]"}]}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.812370021182947*^9, 3.8123700829719467`*^9}, {
+  3.812370128998247*^9, 3.812370145060384*^9}, {3.812370176227165*^9, 
+  3.8123701853796587`*^9}, {3.812370223773602*^9, 3.812370803657175*^9}, {
+  3.812370947137019*^9, 3.81237099279014*^9}},
+ CellLabel->
+  "In[195]:=",ExpressionUUID->"d8458e2f-b61e-47ac-828e-6856d82a0bba"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"apportionmentRounder", "[", "x_", "]"}], ":=", 
+  RowBox[{"Map", "[", 
+   RowBox[{"huntingtonHill", ",", "x"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"populations", "=", 
+   RowBox[{"census", "[", 
+    RowBox[{"[", "12", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"seatsToGive", "=", "435"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.812197001230382*^9, 3.812197016583947*^9}, {
+   3.812197899443922*^9, 3.8121979547734613`*^9}, {3.812198070600889*^9, 
+   3.812198072441042*^9}, {3.8121981486456747`*^9, 3.812198200481235*^9}, {
+   3.8121982731959553`*^9, 3.812198300320797*^9}, {3.81220039642003*^9, 
+   3.8122003972156076`*^9}, 3.81220109825949*^9, {3.812201188259883*^9, 
+   3.812201211170711*^9}, {3.812330562792676*^9, 3.812330600811776*^9}, {
+   3.812330740578455*^9, 3.812330753937633*^9}, {3.81233108039986*^9, 
+   3.812331082012929*^9}, {3.812332249782971*^9, 3.8123322836133966`*^9}, {
+   3.812332381070032*^9, 3.812332381882984*^9}, {3.8123324124015913`*^9, 
+   3.8123324206173573`*^9}, {3.812332820604185*^9, 3.812332840173716*^9}, {
+   3.812333781370463*^9, 3.812333785032469*^9}, {3.81236975363482*^9, 
+   3.812369809387554*^9}, {3.8123698865027103`*^9, 3.8123699775255537`*^9}, {
+   3.812370793166174*^9, 3.812370796721177*^9}, 3.812371166253067*^9},
+ CellLabel->
+  "In[199]:=",ExpressionUUID->"f50088ab-df65-4181-b44c-b0323cab9019"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Necessary Metadata Calculations (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.812201110759268*^9, 3.8122011201197042`*^9}, {
+  3.81220125254138*^9, 
+  3.812201252793796*^9}},ExpressionUUID->"f6299a89-003e-4655-b178-\
+dec3041db0e5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"numPopulationGroups", "=", 
+   RowBox[{
+    RowBox[{"Dimensions", "[", "populations", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"totalPopulation", "=", 
+   RowBox[{"Total", "[", "populations", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"populationPerSeat", "=", 
+   RowBox[{"totalPopulation", "/", "seatsToGive"}]}], ";"}]}], "Input",
+ CellLabel->
+  "In[202]:=",ExpressionUUID->"864dd7be-8414-4b9b-9b86-5812eba268ee"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Search Parameters/Function (Do NOT Modify)", "Section",
+ CellChangeTimes->{{3.81220092665469*^9, 3.812200955731041*^9}, {
+  3.812201245656302*^9, 
+  3.812201245929105*^9}},ExpressionUUID->"b0a7c079-ba4b-4407-b65b-\
+626ea7596483"],
+
+Cell[CellGroupData[{
+
+Cell["Binary Search Parameters/Variables (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.8122011483477583`*^9, 3.812201157044286*^9}, {
+  3.81220137202712*^9, 
+  3.8122013723524427`*^9}},ExpressionUUID->"d5207f1b-d91d-4f94-9f20-\
+892345ea74b1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variableQuotas", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "1", ",", "numPopulationGroups"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"binarySearchChange", "=", 
+   SuperscriptBox["10", 
+    RowBox[{
+     RowBox[{"Ceiling", "[", 
+      RowBox[{"Log", "[", 
+       RowBox[{"10", ",", "populationPerSeat"}], "]"}], "]"}], "-", "5"}]]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"lower", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"upper", "=", 
+   RowBox[{"populationPerSeat", "*", "2"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"loopCondition", "=", 
+   RowBox[{"upper", ">", "lower"}]}], ";"}]}], "Input",
+ CellLabel->
+  "In[205]:=",ExpressionUUID->"cf1a84e0-8dab-49c1-bacf-3db304a19e2a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Binary Search (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.81220116005367*^9, 3.812201161972823*^9}, {
+  3.812201372823738*^9, 
+  3.812201373036621*^9}},ExpressionUUID->"adba080d-7e3c-408c-b826-\
+87d710599527"],
+
+Cell[BoxData[
+ RowBox[{"While", "[", 
+  RowBox[{"loopCondition", ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"variablePopulationSeatRatio", "=", 
+     FractionBox[
+      RowBox[{"lower", "+", "upper"}], "2"]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"variableQuotas", "=", 
+     RowBox[{"apportionmentRounder", "[", 
+      RowBox[{"populations", "/", "variablePopulationSeatRatio"}], "]"}]}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"totalQuotas", "=", 
+     RowBox[{"Total", "[", "variableQuotas", "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"totalQuotas", "\[Equal]", "seatsToGive"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"loopCondition", "=", "False"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"totalQuotas", ">", "seatsToGive"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"lower", "=", 
+          RowBox[{
+          "variablePopulationSeatRatio", "+", "binarySearchChange"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"upper", "=", 
+          RowBox[{
+          "variablePopulationSeatRatio", "-", "binarySearchChange"}]}]}], 
+        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"loopCondition", "=", 
+        RowBox[{"upper", ">", "lower"}]}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.812198775392617*^9, 3.8121988370966043`*^9}, {
+  3.812198886359284*^9, 3.812198989137082*^9}, {3.8121991365673*^9, 
+  3.812199229716172*^9}, {3.812199286514262*^9, 3.812199309261067*^9}, {
+  3.812199440706142*^9, 3.812199544603553*^9}, {3.812199625202978*^9, 
+  3.812199663759149*^9}, {3.812199906062961*^9, 3.812199908664575*^9}, {
+  3.812200066278626*^9, 3.81220006780364*^9}, {3.812200114672141*^9, 
+  3.812200125337823*^9}, {3.812200162491653*^9, 3.812200176439028*^9}, {
+  3.812200226087469*^9, 3.8122002702113943`*^9}, {3.812200366589645*^9, 
+  3.8122003764514008`*^9}, {3.812200538009798*^9, 3.8122005487382927`*^9}, {
+  3.812200966067843*^9, 3.812200967710531*^9}, {3.8122011398783417`*^9, 
+  3.812201142518631*^9}, {3.812332709791314*^9, 3.8123327286306963`*^9}, {
+  3.812333823509664*^9, 3.8123338249318647`*^9}},
+ CellLabel->
+  "In[210]:=",ExpressionUUID->"dac5605e-7d1a-4f72-b8e0-2e684def50b0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Search Output (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.8122009721534853`*^9, 3.812200974396883*^9}, {
+  3.812201166089059*^9, 3.812201166961887*^9}, {3.8122013745014772`*^9, 
+  3.8122013747821407`*^9}},ExpressionUUID->"705ab01c-3881-439f-b844-\
+5c975075b699"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"totalQuotas", "!=", "seatsToGive"}], ",", 
+   RowBox[{"Print", "[", "\"\<Search was inconclusive\>\"", "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Distributions Ratio: \>\"", ",", 
+      RowBox[{"variablePopulationSeatRatio", "//", "N"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Distribution Quotas: \>\"", ",", "variableQuotas"}], "]"}], 
+    ";"}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.812200976276205*^9, 3.8122010549958563`*^9}, {
+  3.8122011723302193`*^9, 3.812201172729216*^9}, {3.812330770853795*^9, 
+  3.812330891348501*^9}, {3.8123309270575857`*^9, 3.812330960459668*^9}, {
+  3.81233229952361*^9, 3.812332300354245*^9}},
+ CellLabel->
+  "In[211]:=",ExpressionUUID->"33baf3f6-ecbf-425c-9938-4d45d141b9da"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Distributions Ratio: \"\>", "\[InvisibleSpace]", 
+   "754421.831950431`"}],
+  SequenceForm["Distributions Ratio: ", 754421.831950431],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.812330869980362*^9, 3.8123308916916733`*^9}, {
+   3.812330928965394*^9, 3.812330962414893*^9}, 3.8123310837508993`*^9, {
+   3.8123322898248377`*^9, 3.812332303232727*^9}, 3.812332393525778*^9, 
+   3.8123327328901863`*^9, 3.812332844405699*^9, 3.812333732506194*^9, 
+   3.812333834757127*^9, 3.8123696456871777`*^9, 3.812369981410899*^9, 
+   3.812370806237669*^9, 3.812371168957643*^9},
+ CellLabel->
+  "During evaluation of \
+In[211]:=",ExpressionUUID->"ef153c5c-1a8a-42ca-b5c4-217052f96456"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Distribution Quotas: \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+    "7", ",", "1", ",", "10", ",", "4", ",", "52", ",", "8", ",", "5", ",", 
+     "1", ",", "28", ",", "14", ",", "2", ",", "2", ",", "17", ",", "9", ",", 
+     "4", ",", "4", ",", "6", ",", "6", ",", "2", ",", "8", ",", "9", ",", 
+     "13", ",", "7", ",", "4", ",", "8", ",", "2", ",", "3", ",", "4", ",", 
+     "2", ",", "12", ",", "3", ",", "26", ",", "14", ",", "1", ",", "16", ",",
+      "5", ",", "6", ",", "17", ",", "1", ",", "7", ",", "1", ",", "9", ",", 
+     "38", ",", "4", ",", "1", ",", "11", ",", "10", ",", "2", ",", "8", ",", 
+     "1"}], "}"}]}],
+  SequenceForm[
+  "Distribution Quotas: ", {7, 1, 10, 4, 52, 8, 5, 1, 28, 14, 2, 2, 17, 9, 4, 
+   4, 6, 6, 2, 8, 9, 13, 7, 4, 8, 2, 3, 4, 2, 12, 3, 26, 14, 1, 16, 5, 6, 17, 
+   1, 7, 1, 9, 38, 4, 1, 11, 10, 2, 8, 1}],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.812330869980362*^9, 3.8123308916916733`*^9}, {
+   3.812330928965394*^9, 3.812330962414893*^9}, 3.8123310837508993`*^9, {
+   3.8123322898248377`*^9, 3.812332303232727*^9}, 3.812332393525778*^9, 
+   3.8123327328901863`*^9, 3.812332844405699*^9, 3.812333732506194*^9, 
+   3.812333834757127*^9, 3.8123696456871777`*^9, 3.812369981410899*^9, 
+   3.812370806237669*^9, 3.812371168959902*^9},
+ CellLabel->
+  "During evaluation of \
+In[211]:=",ExpressionUUID->"aceda992-8d09-48a4-995b-946d6ca89a69"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", "50"}], ",", 
+   RowBox[{"i", "++"}], ",", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Number of seats for \>\"", ",", 
+      RowBox[{"states", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<: \>\"", ",", 
+      RowBox[{"variableQuotas", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ";"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.812371007176671*^9, 3.8123710689689417`*^9}},
+ CellLabel->
+  "In[212]:=",ExpressionUUID->"80af925b-9fbc-4fb7-954c-5b53d6a103ff"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Alabama\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "7"}],
+  SequenceForm["Number of seats for ", ".Alabama", ": ", 7],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371168991962*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"5c82ca0e-d354-479e-95a0-a855b39ffa5c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Alaska\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".Alaska", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371168992976*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"7166c2f4-3186-40f4-b304-5fc96fddcb73"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Arizona\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "10"}],
+  SequenceForm["Number of seats for ", ".Arizona", ": ", 10],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371168994944*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"fd5d27b8-479a-4411-ad73-72a7b03afcb4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Arkansas\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "4"}],
+  SequenceForm["Number of seats for ", ".Arkansas", ": ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711689955797`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"8785e7b7-1cfb-4d47-b055-08600d6f5576"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".California\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "52"}],
+  SequenceForm["Number of seats for ", ".California", ": ", 52],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711689962187`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"224f4fdc-cf18-4153-94c6-42294bb30ff9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Colorado\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "8"}],
+  SequenceForm["Number of seats for ", ".Colorado", ": ", 8],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371168996846*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"b0ef8184-50b8-49b4-b59c-f5b14e7fee71"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Connecticut\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "5"}],
+  SequenceForm["Number of seats for ", ".Connecticut", ": ", 5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711689974823`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"b1117e29-4e26-4e87-8663-d541a6e5648b"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Delaware\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".Delaware", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371168998177*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"d21876df-3573-4e30-9f9c-d14e3516a8d8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Florida\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "28"}],
+  SequenceForm["Number of seats for ", ".Florida", ": ", 28],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.81237116899888*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"8062cfc7-94a9-489d-9f40-a57067b7f200"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Georgia\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "14"}],
+  SequenceForm["Number of seats for ", ".Georgia", ": ", 14],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371168999547*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"b8cbd6a9-3a45-4503-9be9-e509fb692b48"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Hawaii\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "2"}],
+  SequenceForm["Number of seats for ", ".Hawaii", ": ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169000301*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"5a65554b-8a66-4730-9a30-ec8404170c80"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Idaho\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "2"}],
+  SequenceForm["Number of seats for ", ".Idaho", ": ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169001141*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"fc900bbc-4541-4091-8804-600b21fd07a6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Illinois\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "17"}],
+  SequenceForm["Number of seats for ", ".Illinois", ": ", 17],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169001973*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"e9670103-7f3d-4222-9cd4-647a1784340f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Indiana\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "9"}],
+  SequenceForm["Number of seats for ", ".Indiana", ": ", 9],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169002954*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"80b2be36-0237-496d-b26f-9646f7fd4bc6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Iowa\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["Number of seats for ", ".Iowa", ": ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690037203`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"e8c5daee-be59-4b6c-9e86-33626e799c97"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Kansas\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["Number of seats for ", ".Kansas", ": ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169004558*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"550f7abd-bcc5-4e3c-8af3-d366d5562e04"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Kentucky\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "6"}],
+  SequenceForm["Number of seats for ", ".Kentucky", ": ", 6],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169005374*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"d6027ded-3137-4a13-9898-59008c0030f8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Louisiana\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "6"}],
+  SequenceForm["Number of seats for ", ".Louisiana", ": ", 6],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169006105*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"aa2314c6-f35a-45f7-8038-39861841340c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Maine\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "2"}],
+  SequenceForm["Number of seats for ", ".Maine", ": ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169006784*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"33f4f4e4-6049-4618-9a7d-d86c946eaf88"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Maryland\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "8"}],
+  SequenceForm["Number of seats for ", ".Maryland", ": ", 8],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169007472*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"28eda93d-d0e4-404b-a568-63a4769ffbb9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Massachusetts\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "9"}],
+  SequenceForm["Number of seats for ", ".Massachusetts", ": ", 9],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169008157*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"32ae7854-5001-4a50-b4f2-e6a159c1fe8e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Michigan\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "13"}],
+  SequenceForm["Number of seats for ", ".Michigan", ": ", 13],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.81237116900939*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"eece43a9-9905-415f-a331-68ff3ca5ba59"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Minnesota\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "7"}],
+  SequenceForm["Number of seats for ", ".Minnesota", ": ", 7],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169010408*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"d43be8c4-ee46-4b08-8ed2-f0db487181df"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Mississippi\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "4"}],
+  SequenceForm["Number of seats for ", ".Mississippi", ": ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.81237116901116*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"892b5747-e235-41a6-950e-a7249fb61752"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Missouri\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "8"}],
+  SequenceForm["Number of seats for ", ".Missouri", ": ", 8],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690118637`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"10fc7809-0a41-4a79-a416-0d83e0b689e9"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Montana\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "2"}],
+  SequenceForm["Number of seats for ", ".Montana", ": ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169012549*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"4ac6ca3b-278d-470d-9627-838fe7386d09"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Nebraska\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "3"}],
+  SequenceForm["Number of seats for ", ".Nebraska", ": ", 3],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.81237116901324*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"972b0936-8478-45e4-b65a-f69045584a48"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Nevada\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["Number of seats for ", ".Nevada", ": ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169013915*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"880e3309-17e8-40f8-906c-a0ab761140d2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".New Hampshire\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "2"}],
+  SequenceForm["Number of seats for ", ".New Hampshire", ": ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169014599*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"c443a6da-c1d4-44ed-ad7c-a47b8f95ede0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".New Jersey\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "12"}],
+  SequenceForm["Number of seats for ", ".New Jersey", ": ", 12],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169015307*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"a64f7532-eb21-43e1-bb09-f3dc14c27613"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".New Mexico\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "3"}],
+  SequenceForm["Number of seats for ", ".New Mexico", ": ", 3],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169015994*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"d03d987b-760a-481e-883e-cd4b2433e0fe"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".New York\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "26"}],
+  SequenceForm["Number of seats for ", ".New York", ": ", 26],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169016674*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"e858ba21-364c-49b2-a89b-ee86f8a503ed"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".North Carolina\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "14"}],
+  SequenceForm["Number of seats for ", ".North Carolina", ": ", 14],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169017371*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"a1bd2c1a-a6fc-4121-af13-be03d0ce56bf"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".North Dakota\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".North Dakota", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169018216*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"770c0d01-1c27-40fc-a34b-1f72989fd617"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Ohio\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "16"}],
+  SequenceForm["Number of seats for ", ".Ohio", ": ", 16],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169019129*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"e51663ce-9bda-4e17-aeda-a1bbb30a5777"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Oklahoma\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "5"}],
+  SequenceForm["Number of seats for ", ".Oklahoma", ": ", 5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169020249*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"8dc523c7-6f09-4280-b268-a5a4f1060ab3"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Oregon\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "6"}],
+  SequenceForm["Number of seats for ", ".Oregon", ": ", 6],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690211153`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"484796eb-bbc0-48e7-9cf9-3d456d68d982"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Pennsylvania\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "17"}],
+  SequenceForm["Number of seats for ", ".Pennsylvania", ": ", 17],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169021804*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"81b1f0d8-2352-4944-ab48-99367b423403"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Rhode Island\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".Rhode Island", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169022477*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"76a73a01-350d-4705-b510-e09741ead467"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".South Carolina\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "7"}],
+  SequenceForm["Number of seats for ", ".South Carolina", ": ", 7],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169023156*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"b9efb67f-f3d3-41e5-b052-abdb6695f0a0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".South Dakota\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".South Dakota", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169023837*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"1783bdd9-a13d-4589-acfd-e3725833ad85"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Tennessee\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "9"}],
+  SequenceForm["Number of seats for ", ".Tennessee", ": ", 9],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690245123`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"cbb7f3c5-df14-4c27-b433-00825d547287"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Texas\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "38"}],
+  SequenceForm["Number of seats for ", ".Texas", ": ", 38],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690251837`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"9b93a355-112c-4fbd-a3c3-11706a331cca"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Utah\"\>", "\[InvisibleSpace]", "\<\": \"\>", 
+   "\[InvisibleSpace]", "4"}],
+  SequenceForm["Number of seats for ", ".Utah", ": ", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690258904`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"0bc371d8-3897-4ef3-b361-58d908f83885"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Vermont\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".Vermont", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690265837`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"b30efb26-8d81-4c61-95f2-95f2407c74b4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Virginia\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "11"}],
+  SequenceForm["Number of seats for ", ".Virginia", ": ", 11],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690272703`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"75024c44-7330-4754-9cc0-4a5f7ea93470"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Washington\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "10"}],
+  SequenceForm["Number of seats for ", ".Washington", ": ", 10],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169027956*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"e0bb8d33-b3dd-4b8a-8c70-f84c186b19da"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".West Virginia\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "2"}],
+  SequenceForm["Number of seats for ", ".West Virginia", ": ", 2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169028791*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"4ed25138-d8c6-4752-9623-5b6f5bc1223a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Wisconsin\"\>", 
+   "\[InvisibleSpace]", "\<\": \"\>", "\[InvisibleSpace]", "8"}],
+  SequenceForm["Number of seats for ", ".Wisconsin", ": ", 8],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.8123711690295362`*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"ca23cb41-3828-4857-8d9e-ffeec79dcec1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Number of seats for \"\>", 
+   "\[InvisibleSpace]", "\<\".Wyoming\"\>", "\[InvisibleSpace]", "\<\": \"\>",
+    "\[InvisibleSpace]", "1"}],
+  SequenceForm["Number of seats for ", ".Wyoming", ": ", 1],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.8123710697022943`*^9, 3.812371169030602*^9},
+ CellLabel->
+  "During evaluation of \
+In[212]:=",ExpressionUUID->"379b0c30-bb62-4520-9afb-5addfaf1dc0b"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{426, Automatic}, {57, Automatic}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"dc94a1ee-793e-4558-9ad5-cb0dad0c64f6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3347, 63, 493, "Input",ExpressionUUID->"162ec82e-a421-4afc-9467-173c3660164a"],
+Cell[CellGroupData[{
+Cell[3930, 87, 209, 4, 98, "Title",ExpressionUUID->"ee03c5a5-b44f-4536-b319-1b6d2acf1313"],
+Cell[CellGroupData[{
+Cell[4164, 95, 289, 4, 67, "Section",ExpressionUUID->"f7dde8e4-d265-4ce6-963a-41fb43c424cc"],
+Cell[4456, 101, 1193, 34, 180, "Input",ExpressionUUID->"d918c230-b12f-4cb8-9fb8-46a17c065c5a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5686, 140, 223, 4, 67, "Section",ExpressionUUID->"bf59d647-be2d-4930-8b34-949ce336b104"],
+Cell[CellGroupData[{
+Cell[5934, 148, 223, 4, 54, "Subsection",ExpressionUUID->"9b6280a2-2e7d-4ab8-bee3-2cce163ef04d"],
+Cell[6160, 154, 2092, 60, 115, "Input",ExpressionUUID->"d8458e2f-b61e-47ac-828e-6856d82a0bba"],
+Cell[8255, 216, 1422, 25, 73, "Input",ExpressionUUID->"f50088ab-df65-4181-b44c-b0323cab9019"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9714, 246, 245, 4, 54, "Subsection",ExpressionUUID->"f6299a89-003e-4655-b178-dec3041db0e5"],
+Cell[9962, 252, 530, 13, 73, "Input",ExpressionUUID->"864dd7be-8414-4b9b-9b86-5812eba268ee"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10541, 271, 235, 4, 67, "Section",ExpressionUUID->"b0a7c079-ba4b-4407-b65b-626ea7596483"],
+Cell[CellGroupData[{
+Cell[10801, 279, 250, 4, 54, "Subsection",ExpressionUUID->"d5207f1b-d91d-4f94-9f20-892345ea74b1"],
+Cell[11054, 285, 858, 25, 115, "Input",ExpressionUUID->"cf1a84e0-8dab-49c1-bacf-3db304a19e2a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11949, 315, 225, 4, 54, "Subsection",ExpressionUUID->"adba080d-7e3c-408c-b826-87d710599527"],
+Cell[12177, 321, 2372, 48, 316, "Input",ExpressionUUID->"dac5605e-7d1a-4f72-b8e0-2e684def50b0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14586, 374, 278, 4, 54, "Subsection",ExpressionUUID->"705ab01c-3881-439f-b844-5c975075b699"],
+Cell[CellGroupData[{
+Cell[14889, 382, 898, 19, 94, "Input",ExpressionUUID->"33baf3f6-ecbf-425c-9938-4d45d141b9da"],
+Cell[CellGroupData[{
+Cell[15812, 405, 727, 14, 24, "Print",ExpressionUUID->"ef153c5c-1a8a-42ca-b5c4-217052f96456"],
+Cell[16542, 421, 1456, 26, 44, "Print",ExpressionUUID->"aceda992-8d09-48a4-995b-946d6ca89a69"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18047, 453, 629, 16, 73, "Input",ExpressionUUID->"80af925b-9fbc-4fb7-954c-5b53d6a103ff"],
+Cell[CellGroupData[{
+Cell[18701, 473, 450, 10, 24, "Print",ExpressionUUID->"5c82ca0e-d354-479e-95a0-a855b39ffa5c"],
+Cell[19154, 485, 448, 10, 24, "Print",ExpressionUUID->"7166c2f4-3186-40f4-b304-5fc96fddcb73"],
+Cell[19605, 497, 452, 10, 24, "Print",ExpressionUUID->"fd5d27b8-479a-4411-ad73-72a7b03afcb4"],
+Cell[20060, 509, 454, 10, 24, "Print",ExpressionUUID->"8785e7b7-1cfb-4d47-b055-08600d6f5576"],
+Cell[20517, 521, 460, 10, 24, "Print",ExpressionUUID->"224f4fdc-cf18-4153-94c6-42294bb30ff9"],
+Cell[20980, 533, 452, 10, 24, "Print",ExpressionUUID->"b0ef8184-50b8-49b4-b59c-f5b14e7fee71"],
+Cell[21435, 545, 460, 10, 24, "Print",ExpressionUUID->"b1117e29-4e26-4e87-8663-d541a6e5648b"],
+Cell[21898, 557, 452, 10, 24, "Print",ExpressionUUID->"d21876df-3573-4e30-9f9c-d14e3516a8d8"],
+Cell[22353, 569, 451, 10, 24, "Print",ExpressionUUID->"8062cfc7-94a9-489d-9f40-a57067b7f200"],
+Cell[22807, 581, 452, 10, 24, "Print",ExpressionUUID->"b8cbd6a9-3a45-4503-9be9-e509fb692b48"],
+Cell[23262, 593, 448, 10, 24, "Print",ExpressionUUID->"5a65554b-8a66-4730-9a30-ec8404170c80"],
+Cell[23713, 605, 446, 10, 24, "Print",ExpressionUUID->"fc900bbc-4541-4091-8804-600b21fd07a6"],
+Cell[24162, 617, 454, 10, 24, "Print",ExpressionUUID->"e9670103-7f3d-4222-9cd4-647a1784340f"],
+Cell[24619, 629, 450, 10, 24, "Print",ExpressionUUID->"80b2be36-0237-496d-b26f-9646f7fd4bc6"],
+Cell[25072, 641, 446, 10, 24, "Print",ExpressionUUID->"e8c5daee-be59-4b6c-9e86-33626e799c97"],
+Cell[25521, 653, 448, 10, 24, "Print",ExpressionUUID->"550f7abd-bcc5-4e3c-8af3-d366d5562e04"],
+Cell[25972, 665, 452, 10, 24, "Print",ExpressionUUID->"d6027ded-3137-4a13-9898-59008c0030f8"],
+Cell[26427, 677, 454, 10, 24, "Print",ExpressionUUID->"aa2314c6-f35a-45f7-8038-39861841340c"],
+Cell[26884, 689, 446, 10, 24, "Print",ExpressionUUID->"33f4f4e4-6049-4618-9a7d-d86c946eaf88"],
+Cell[27333, 701, 452, 10, 24, "Print",ExpressionUUID->"28eda93d-d0e4-404b-a568-63a4769ffbb9"],
+Cell[27788, 713, 462, 10, 24, "Print",ExpressionUUID->"32ae7854-5001-4a50-b4f2-e6a159c1fe8e"],
+Cell[28253, 725, 453, 10, 24, "Print",ExpressionUUID->"eece43a9-9905-415f-a331-68ff3ca5ba59"],
+Cell[28709, 737, 454, 10, 24, "Print",ExpressionUUID->"d43be8c4-ee46-4b08-8ed2-f0db487181df"],
+Cell[29166, 749, 457, 10, 24, "Print",ExpressionUUID->"892b5747-e235-41a6-950e-a7249fb61752"],
+Cell[29626, 761, 454, 10, 24, "Print",ExpressionUUID->"10fc7809-0a41-4a79-a416-0d83e0b689e9"],
+Cell[30083, 773, 450, 10, 24, "Print",ExpressionUUID->"4ac6ca3b-278d-470d-9627-838fe7386d09"],
+Cell[30536, 785, 451, 10, 24, "Print",ExpressionUUID->"972b0936-8478-45e4-b65a-f69045584a48"],
+Cell[30990, 797, 448, 10, 24, "Print",ExpressionUUID->"880e3309-17e8-40f8-906c-a0ab761140d2"],
+Cell[31441, 809, 462, 10, 24, "Print",ExpressionUUID->"c443a6da-c1d4-44ed-ad7c-a47b8f95ede0"],
+Cell[31906, 821, 458, 10, 24, "Print",ExpressionUUID->"a64f7532-eb21-43e1-bb09-f3dc14c27613"],
+Cell[32367, 833, 456, 10, 24, "Print",ExpressionUUID->"d03d987b-760a-481e-883e-cd4b2433e0fe"],
+Cell[32826, 845, 454, 10, 24, "Print",ExpressionUUID->"e858ba21-364c-49b2-a89b-ee86f8a503ed"],
+Cell[33283, 857, 466, 10, 24, "Print",ExpressionUUID->"a1bd2c1a-a6fc-4121-af13-be03d0ce56bf"],
+Cell[33752, 869, 460, 10, 24, "Print",ExpressionUUID->"770c0d01-1c27-40fc-a34b-1f72989fd617"],
+Cell[34215, 881, 446, 10, 24, "Print",ExpressionUUID->"e51663ce-9bda-4e17-aeda-a1bbb30a5777"],
+Cell[34664, 893, 452, 10, 24, "Print",ExpressionUUID->"8dc523c7-6f09-4280-b268-a5a4f1060ab3"],
+Cell[35119, 905, 450, 10, 24, "Print",ExpressionUUID->"484796eb-bbc0-48e7-9cf9-3d456d68d982"],
+Cell[35572, 917, 462, 10, 24, "Print",ExpressionUUID->"81b1f0d8-2352-4944-ab48-99367b423403"],
+Cell[36037, 929, 460, 10, 24, "Print",ExpressionUUID->"76a73a01-350d-4705-b510-e09741ead467"],
+Cell[36500, 941, 464, 10, 24, "Print",ExpressionUUID->"b9efb67f-f3d3-41e5-b052-abdb6695f0a0"],
+Cell[36967, 953, 460, 10, 24, "Print",ExpressionUUID->"1783bdd9-a13d-4589-acfd-e3725833ad85"],
+Cell[37430, 965, 456, 10, 24, "Print",ExpressionUUID->"cbb7f3c5-df14-4c27-b433-00825d547287"],
+Cell[37889, 977, 450, 10, 24, "Print",ExpressionUUID->"9b93a355-112c-4fbd-a3c3-11706a331cca"],
+Cell[38342, 989, 446, 10, 24, "Print",ExpressionUUID->"0bc371d8-3897-4ef3-b361-58d908f83885"],
+Cell[38791, 1001, 452, 10, 24, "Print",ExpressionUUID->"b30efb26-8d81-4c61-95f2-95f2407c74b4"],
+Cell[39246, 1013, 456, 10, 24, "Print",ExpressionUUID->"75024c44-7330-4754-9cc0-4a5f7ea93470"],
+Cell[39705, 1025, 458, 10, 24, "Print",ExpressionUUID->"e0bb8d33-b3dd-4b8a-8c70-f84c186b19da"],
+Cell[40166, 1037, 462, 10, 24, "Print",ExpressionUUID->"4ed25138-d8c6-4752-9623-5b6f5bc1223a"],
+Cell[40631, 1049, 456, 10, 24, "Print",ExpressionUUID->"ca23cb41-3828-4857-8d9e-ffeec79dcec1"],
+Cell[41090, 1061, 450, 10, 24, "Print",ExpressionUUID->"379b0c30-bb62-4520-9afb-5addfaf1dc0b"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

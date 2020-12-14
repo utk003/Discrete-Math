@@ -1,0 +1,475 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17521,        467]
+NotebookOptionsPosition[     15308,        417]
+NotebookOutlinePosition[     15703,        433]
+CellTagsIndexPosition[     15660,        430]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "MIT", " ", "License", "\n", "\[IndentingNewLine]", "Copyright", " ", 
+    RowBox[{"(", "c", ")"}], " ", "2020", " ", "Utkarsh", " ", "Priyam", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "Permission", " ", "is", 
+    " ", "hereby", " ", "granted"}], ",", 
+   RowBox[{"free", " ", "of", " ", "charge"}], ",", 
+   RowBox[{
+   "to", " ", "any", " ", "person", " ", "obtaining", " ", "a", " ", "copy", 
+    "\n", "of", " ", "this", " ", "software", " ", "and", " ", "associated", 
+    " ", "documentation", " ", "files", " ", 
+    RowBox[{"(", 
+     RowBox[{"the", " ", "\"\<Software\>\""}], ")"}]}], ",", 
+   RowBox[{
+   "to", " ", "deal", "\n", "in", " ", "the", " ", "Software", " ", "without",
+     " ", "restriction"}], ",", 
+   RowBox[{
+   "including", " ", "without", " ", "limitation", " ", "the", " ", "rights", 
+    "\n", "to", " ", "use"}], ",", "copy", ",", "modify", ",", "merge", ",", 
+   "publish", ",", "distribute", ",", "sublicense", ",", 
+   RowBox[{
+    RowBox[{"and", "/", "or"}], " ", "sell", "\n", "copies", " ", "of", " ", 
+    "the", " ", "Software"}], ",", 
+   RowBox[{
+   "and", " ", "to", " ", "permit", " ", "persons", " ", "to", " ", "whom", 
+    " ", "the", " ", "Software", " ", "is", "\n", "furnished", " ", "to", " ",
+     "do", " ", "so"}], ",", 
+   RowBox[{"subject", " ", "to", " ", "the", " ", "following", " ", 
+    RowBox[{"conditions", ":", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+     "The", " ", "above", " ", "copyright", " ", "notice", " ", "and", " ", 
+      "this", " ", "permission", " ", "notice", " ", "shall", " ", "be", " ", 
+      "included", " ", "in", " ", "all", "\n", "copies", " ", "or", " ", 
+      "substantial", " ", "portions", " ", "of", " ", "the", " ", "Software", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "THE", " ", "SOFTWARE", 
+      " ", "IS", " ", "PROVIDED", " ", "\"\<AS IS\>\""}]}]}], ",", 
+   RowBox[{"WITHOUT", " ", "WARRANTY", " ", "OF", " ", "ANY", " ", "KIND"}], 
+   ",", 
+   RowBox[{"EXPRESS", " ", "OR", "\[IndentingNewLine]", "IMPLIED"}], ",", 
+   RowBox[{
+   "INCLUDING", " ", "BUT", " ", "NOT", " ", "LIMITED", " ", "TO", " ", "THE",
+     " ", "WARRANTIES", " ", "OF", " ", "MERCHANTABILITY"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "FITNESS", " ", "FOR", " ", "A", " ", "PARTICULAR", " ", "PURPOSE", " ", 
+    "AND", " ", 
+    RowBox[{"NONINFRINGEMENT", ".", " ", "IN"}], " ", "NO", " ", "EVENT", " ",
+     "SHALL", " ", "THE", "\n", "AUTHORS", " ", "OR", " ", "COPYRIGHT", " ", 
+    "HOLDERS", " ", "BE", " ", "LIABLE", " ", "FOR", " ", "ANY", " ", 
+    "CLAIM"}], ",", 
+   RowBox[{"DAMAGES", " ", "OR", " ", "OTHER", "\n", "LIABILITY"}], ",", 
+   RowBox[{
+   "WHETHER", " ", "IN", " ", "AN", " ", "ACTION", " ", "OF", " ", 
+    "CONTRACT"}], ",", 
+   RowBox[{"TORT", " ", "OR", " ", "OTHERWISE"}], ",", 
+   RowBox[{"ARISING", " ", "FROM"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+   "OUT", " ", "OF", " ", "OR", " ", "IN", " ", "CONNECTION", " ", "WITH", 
+    " ", "THE", " ", "SOFTWARE", " ", "OR", " ", "THE", " ", "USE", " ", "OR",
+     " ", "OTHER", " ", "DEALINGS", " ", "IN", " ", "THE", "\n", 
+    RowBox[{"SOFTWARE", "."}]}]}], "\[IndentingNewLine]", "*)"}]], "Input",Exp\
+ressionUUID->"54f77d09-9b71-4016-99ee-abfafc20b3aa"],
+
+Cell[CellGroupData[{
+
+Cell["Sharing", "Title",
+ CellChangeTimes->{{3.8123741777703447`*^9, 3.8123741826148787`*^9}, 
+   3.81454458377238*^9},ExpressionUUID->"c902b61f-759f-4744-8afd-\
+fbd3f34b034d"],
+
+Cell[CellGroupData[{
+
+Cell["Method of Sealed Bids", "Section",
+ CellChangeTimes->{{3.8123741902269897`*^9, 
+  3.812374196577415*^9}},ExpressionUUID->"7bf291e6-af95-453b-b720-\
+ee93118ab1d8"],
+
+Cell[CellGroupData[{
+
+Cell["Input Bids Here", "Subsection",
+ CellChangeTimes->{{3.812374200195911*^9, 
+  3.812374230160507*^9}},ExpressionUUID->"83238c6c-abec-44f5-ab99-\
+80af99820c11"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"input", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<\>\"", ",", "\"\<Ferial\>\"", ",", " ", "\"\<Billy\>\"", ",", 
+       "\"\<Angel\>\""}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Ocean Fisker\>\"", ",", "75000", ",", "50000", ",", "35000"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Home\>\"", ",", "150000", ",", "170000", ",", "150000"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Vacation Home\>\"", ",", "500000", ",", "750000", ",", "800000"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<2025 VW Van\>\"", ",", "50000", ",", "55000", ",", "30000"}], 
+      "}"}]}], "\[IndentingNewLine]", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"input", "//", "TableForm"}]}], "Input",
+ CellChangeTimes->{{3.812371840644886*^9, 3.812371959588172*^9}, {
+  3.8123720772066793`*^9, 3.812372083416514*^9}},
+ CellLabel->
+  "In[435]:=",ExpressionUUID->"ed77bfdd-96ea-4227-beba-c166f19411be"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Ferial\"\>", "\<\"Billy\"\>", "\<\"Angel\"\>"},
+    {"\<\"Ocean Fisker\"\>", "75000", "50000", "35000"},
+    {"\<\"Home\"\>", "150000", "170000", "150000"},
+    {"\<\"Vacation Home\"\>", "500000", "750000", "800000"},
+    {"\<\"2025 VW Van\"\>", "50000", "55000", "30000"}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.8123719332881937`*^9, 3.812371960530311*^9}, {
+   3.812372074392735*^9, 3.812372084029788*^9}, 3.81237409078014*^9, 
+   3.812374334189933*^9},
+ CellLabel->
+  "Out[436]//TableForm=",ExpressionUUID->"1a3f1255-bced-4d55-9f0f-\
+6c3499751dcb"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculate Metadata and Trim Data Table (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.8123742111468563`*^9, 
+  3.812374258260831*^9}},ExpressionUUID->"68ee42ca-3277-4bb1-ab63-\
+8c6d4bccac08"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"numPeople", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Dimensions", "[", "input", "]"}], "[", 
+     RowBox[{"[", "2", "]"}], "]"}], "-", "1"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"numItems", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Dimensions", "[", "input", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "-", "1"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"people", "=", 
+   RowBox[{"Drop", "[", 
+    RowBox[{
+     RowBox[{"input", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"items", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"input", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "2", ",", 
+        RowBox[{"numItems", "+", "1"}]}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ratings", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"input", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "[", 
+        RowBox[{"[", "j", "]"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", "2", ",", 
+         RowBox[{"numPeople", "+", "1"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "2", ",", 
+       RowBox[{"numItems", "+", "1"}]}], "}"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8123720202191753`*^9, 3.812372094222937*^9}, {
+  3.812372163576427*^9, 3.81237221378017*^9}, {3.812372320706767*^9, 
+  3.812372354372938*^9}, {3.812374063796815*^9, 3.8123740639923964`*^9}},
+ CellLabel->
+  "In[437]:=",ExpressionUUID->"a27e0e12-a287-48c0-9970-ac1b73d42895"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculate Fair Shares and Item Distributions (Do NOT Modify)", \
+"Subsection",
+ CellChangeTimes->{{3.812374265034937*^9, 
+  3.8123742877530107`*^9}},ExpressionUUID->"28a4e820-9a04-49d5-ae88-\
+8c92461ba176"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"fairShares", "=", 
+   RowBox[{
+    RowBox[{"Total", "[", "ratings", "]"}], "/", "numPeople"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"itemOwners", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"FirstPosition", "[", 
+       RowBox[{
+        RowBox[{"ratings", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", 
+        RowBox[{"Max", "[", 
+         RowBox[{"ratings", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "numItems"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"itemDistribution", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"j", "\[Equal]", 
+           RowBox[{"itemOwners", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", "1", ",", "0"}], "]"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "1", ",", "numPeople"}], "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "numItems"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"itemsReceived", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"\"\<\>\"", ",", "numPeople"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", "numItems"}], ",", 
+   RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"itemsReceived", "[", 
+     RowBox[{"[", 
+      RowBox[{"itemOwners", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "=", 
+    RowBox[{
+     RowBox[{"itemsReceived", "[", 
+      RowBox[{"[", 
+       RowBox[{"itemOwners", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "<>", 
+     RowBox[{"items", "[", 
+      RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\<, \>\""}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.812371544410137*^9, 3.812371608418038*^9}, {
+  3.812372252303813*^9, 3.812372255842123*^9}, {3.812372315877439*^9, 
+  3.812372331825225*^9}, {3.8123723619223347`*^9, 3.812372481678995*^9}, {
+  3.812372569826214*^9, 3.8123725977094812`*^9}, {3.812372703024385*^9, 
+  3.812372770067724*^9}, {3.8123728150162573`*^9, 3.8123728632261333`*^9}, {
+  3.812373070395788*^9, 3.812373071732079*^9}, {3.8123732382702293`*^9, 
+  3.812373251031711*^9}, {3.812374068254612*^9, 3.8123740830357122`*^9}},
+ CellLabel->
+  "In[442]:=",ExpressionUUID->"19344a23-2f71-4d4b-a003-81b7acad1e50"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculate Money in Pot/Surplus (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.812374294474766*^9, 
+  3.812374306192726*^9}},ExpressionUUID->"b3a8fb3b-55d1-4a53-90c9-\
+0aaa5f54b688"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"valueReceived", "=", 
+   RowBox[{"Total", "[", 
+    RowBox[{"itemDistribution", "*", "ratings"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"paidToPot", "=", 
+   RowBox[{
+    RowBox[{"valueReceived", "-", "fairShares"}], "//", "N"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"leftInPot", "=", 
+   RowBox[{"Total", "[", "paidToPot", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"paidToPot", "-=", 
+   RowBox[{"leftInPot", "/", "numPeople"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8123730137843637`*^9, 3.8123730951528254`*^9}, {
+  3.812373171905195*^9, 3.8123731753707323`*^9}, {3.812373219082436*^9, 
+  3.8123733240709887`*^9}, {3.812373610060458*^9, 3.812373655046212*^9}},
+ CellLabel->
+  "In[447]:=",ExpressionUUID->"be079fef-a18c-41f1-b72c-1cef03999124"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Output Final Item and Money Distributions (Do NOT Modify)", "Subsection",
+ CellChangeTimes->{{3.8123743097023697`*^9, 
+  3.812374327451911*^9}},ExpressionUUID->"7512bbfe-b8d5-40ba-841f-\
+9f39dbb9f36f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"translateToText", "[", "money_", "]"}], ":=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"money", ">", "0"}], ",", 
+    RowBox[{"\"\< paid $\>\"", "<>", 
+     RowBox[{"ToString", "[", "money", "]"}], "<>", "\"\< to the pot.\>\""}], 
+    ",", 
+    RowBox[{"\"\< received $\>\"", "<>", 
+     RowBox[{"ToString", "[", 
+      RowBox[{"-", "money"}], "]"}], "<>", "\"\< from the pot.\>\""}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"i", "=", "1"}], ",", 
+   RowBox[{"i", "\[LessEqual]", "numPeople"}], ",", 
+   RowBox[{"i", "++"}], ",", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"people", "[", 
+      RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\< received \>\"", "<>", 
+     RowBox[{"itemsReceived", "[", 
+      RowBox[{"[", "i", "]"}], "]"}], "<>", "\"\<and\>\"", "<>", 
+     RowBox[{"translateToText", "[", 
+      RowBox[{"paidToPot", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], "]"}]}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8123738659258738`*^9, 3.8123738785426273`*^9}, {
+  3.812373922379117*^9, 3.812373958836993*^9}, {3.812374096980508*^9, 
+  3.812374105519744*^9}},
+ CellLabel->
+  "In[451]:=",ExpressionUUID->"9b338482-8f89-4a5a-8d93-c68c2fba962a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Ferial received Ocean Fisker, and received $237222. from \
+the pot.\"\>"], "Print",
+ CellChangeTimes->{{3.8123739270820627`*^9, 3.812373959247596*^9}, 
+   3.8123740908428907`*^9, 3.812374334268676*^9},
+ CellLabel->
+  "During evaluation of \
+In[451]:=",ExpressionUUID->"fdc1aa15-afbf-4fdc-a92f-25efc5eb046a"],
+
+Cell[BoxData["\<\"Billy received Home, 2025 VW Van, and received $170556. \
+from the pot.\"\>"], "Print",
+ CellChangeTimes->{{3.8123739270820627`*^9, 3.812373959247596*^9}, 
+   3.8123740908428907`*^9, 3.81237433427094*^9},
+ CellLabel->
+  "During evaluation of \
+In[451]:=",ExpressionUUID->"84591128-5480-4400-8607-d8c7ac17f87b"],
+
+Cell[BoxData["\<\"Angel received Vacation Home, and paid $407778. to the pot.\
+\"\>"], "Print",
+ CellChangeTimes->{{3.8123739270820627`*^9, 3.812373959247596*^9}, 
+   3.8123740908428907`*^9, 3.812374334273469*^9},
+ CellLabel->
+  "During evaluation of \
+In[451]:=",ExpressionUUID->"78878877-a4b5-417d-9fe6-a3747023431f"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1283, 982},
+WindowMargins->{{114, Automatic}, {16, Automatic}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5fbc63d4-b5fc-43ea-b19e-2bbf62157521"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3347, 63, 493, "Input",ExpressionUUID->"54f77d09-9b71-4016-99ee-abfafc20b3aa"],
+Cell[CellGroupData[{
+Cell[3930, 87, 176, 3, 98, "Title",ExpressionUUID->"c902b61f-759f-4744-8afd-fbd3f34b034d"],
+Cell[CellGroupData[{
+Cell[4131, 94, 168, 3, 67, "Section",ExpressionUUID->"7bf291e6-af95-453b-b720-ee93118ab1d8"],
+Cell[CellGroupData[{
+Cell[4324, 101, 163, 3, 54, "Subsection",ExpressionUUID->"83238c6c-abec-44f5-ab99-80af99820c11"],
+Cell[CellGroupData[{
+Cell[4512, 108, 1153, 28, 178, "Input",ExpressionUUID->"ed77bfdd-96ea-4227-beba-c166f19411be"],
+Cell[5668, 138, 958, 23, 114, "Output",ExpressionUUID->"1a3f1255-bced-4d55-9f0f-6c3499751dcb"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6675, 167, 204, 3, 54, "Subsection",ExpressionUUID->"68ee42ca-3277-4bb1-ab63-8c6d4bccac08"],
+Cell[6882, 172, 1864, 56, 157, "Input",ExpressionUUID->"a27e0e12-a287-48c0-9970-ac1b73d42895"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8783, 233, 212, 4, 54, "Subsection",ExpressionUUID->"28a4e820-9a04-49d5-ae88-8c92461ba176"],
+Cell[8998, 239, 2637, 71, 157, "Input",ExpressionUUID->"19344a23-2f71-4d4b-a003-81b7acad1e50"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11672, 315, 194, 3, 54, "Subsection",ExpressionUUID->"b3a8fb3b-55d1-4a53-90c9-0aaa5f54b688"],
+Cell[11869, 320, 848, 21, 94, "Input",ExpressionUUID->"be079fef-a18c-41f1-b72c-1cef03999124"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12754, 346, 207, 3, 54, "Subsection",ExpressionUUID->"7512bbfe-b8d5-40ba-841f-9f39dbb9f36f"],
+Cell[CellGroupData[{
+Cell[12986, 353, 1255, 31, 52, "Input",ExpressionUUID->"9b338482-8f89-4a5a-8d93-c68c2fba962a"],
+Cell[CellGroupData[{
+Cell[14266, 388, 325, 6, 24, "Print",ExpressionUUID->"fdc1aa15-afbf-4fdc-a92f-25efc5eb046a"],
+Cell[14594, 396, 328, 6, 24, "Print",ExpressionUUID->"84591128-5480-4400-8607-d8c7ac17f87b"],
+Cell[14925, 404, 319, 6, 24, "Print",ExpressionUUID->"78878877-a4b5-417d-9fe6-a3747023431f"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
